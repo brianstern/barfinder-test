@@ -5,7 +5,7 @@ window.onload = function() {
     var scaleVal = 1;
     var imageObj = new Image();
     var systems = [];
-    var minBar = 18;
+    var minBar = 17;
     
     /*
     function getSubStaffByNumber(group, number) {
@@ -681,13 +681,16 @@ window.onload = function() {
         system.getLayer().draw();
     }
     
+    // Update the numbering of the bars on the page to be in the correct order
     function updateNumbers() {
         var currentNumber = minBar;
         var i, j, changed;
         for (i = 0; i < systems.length; i++) {
+            // Sort bars by x-coordinate
             systems[i].attrs.bars = systems[i].attrs.bars.sort(function(a, b) { return a.getX() - b.getX()});
             changed = false;
             for (j = 0; j < systems[i].attrs.bars.length; j++) {
+                // Reassign bar number if the current one is incorrect
                 if (systems[i].attrs.bars[j].attrs.number !== currentNumber) {
                     changed = true;
                     systems[i].attrs.bars[j].attrs.number = currentNumber;
@@ -696,6 +699,7 @@ window.onload = function() {
                 }
                 currentNumber++;
             }
+            // Only redraw system if changes have occurred
             if (changed) {
                 systems[i].getLayer().draw();
             }
@@ -745,6 +749,8 @@ window.onload = function() {
         }
     }
     
+    /* Readjust bar so that the group is located at the top left anchor,
+       and all internal elements are oriented around (0,0) */
     function refitBox(bGroup) {
         var topLeft = bGroup.get(".tl")[0];
         var topRight = bGroup.get(".tr")[0];
@@ -814,18 +820,21 @@ window.onload = function() {
             draggable: true,
             visible: false
         });
-
+        
+        // Update bar when moved
         anchor.on("dragmove", function() {
             update(group, this);
             layer.draw();
         });
-        anchor.on("mousedown touchstart", function(e) {
+        // Prevent event from bubbling up when anchor selected, move bar to top, hide bar number
+        anchor.on("mousedown", function(e) {
             group.setDraggable(false);
             this.moveToTop();
             e.cancelBubble = true;
             var number = group.get(".barnumber")[0];
             number.attrs.visible = false;
         });
+        // Update score information on dragend (bar/system fitting, bar numbers)
         anchor.on("dragend", function() {
             resizeSystem(group.getParent().get(".system")[0]);
             group.setDraggable(true);
@@ -835,23 +844,26 @@ window.onload = function() {
             number.attrs.visible = true;
             layer.draw();
         });
-        // add hover styling
+        // Add hover styling
         anchor.on("mouseover", function() {
             var layer = this.getLayer();
             document.body.style.cursor = "pointer";
             this.setStrokeWidth(4);
             layer.draw();
         });
+        // Restore hover styling on mouseout
         anchor.on("mouseout", function() {
             var layer = this.getLayer();
             document.body.style.cursor = "move";
             this.setStrokeWidth(2);
             layer.draw();
         });
+        // Keep anchor visible during drag
         group.on("mouseover dragmove", function() {
             anchor.attrs.visible = true;
             anchor.getLayer().draw();
         });
+        // Hide anchors when mouse leaves bar
         group.on("mouseout", function() {
             anchor.attrs.visible = false;
             anchor.getLayer().draw();
@@ -860,15 +872,26 @@ window.onload = function() {
     }
     
     // Add a bar to a system
-    function addBar(stage, system, x, y, w, h, number) {
+    function addBar(stage, system, x, y, w, h, number, id, facs) {
+        if (id === undefined) {
+            id = "m-" + uuid.v1();
+        }
+        if (facs === undefined) {
+            facs = "m-" + uuid.v1();
+        }
+        
+        
         var bGroup = new Kinetic.Group({
             x: x,
             y: y,
             draggable: true,
             name: "bargroup",
-            number: number
+            number: number,
+            id: id,
+            facs: facs
         });
         
+        // Insert bar into correct position in system's bars list
         var i = 0;
         for (i = 0; i < system.children.length; i++) {
             if (system.children[i].getX() > x) {
@@ -882,6 +905,7 @@ window.onload = function() {
         
         system.add(bGroup);
         
+        // Detection box for bar, coloured near-transparent orange (for now)
         var invisiBox = new Kinetic.Rect({
             x: -barMargin,
             y: -barMargin,
@@ -893,6 +917,7 @@ window.onload = function() {
         });
         bGroup.add(invisiBox);
         
+        // Number text in top-left corner of bar
         var barText = new Kinetic.Text({
             x: 0,
             y: 0,
@@ -907,7 +932,8 @@ window.onload = function() {
         });
         
         bGroup.add(barText);
-
+        
+        // Actual bar box
         var bar = new Kinetic.Rect({
             x: 0,
             y: 0,
@@ -919,6 +945,7 @@ window.onload = function() {
             name: "bar"
         });
         
+        // Split bar if shift-clicked, splitting at location of click
         bar.on("click", function(e) {
             if (e.shiftKey) {
                 var pos = stage.getMousePosition(e);
@@ -937,6 +964,7 @@ window.onload = function() {
         
         bGroup.add(bar);
         
+        // Pointer styling
         bGroup.on("mouseover", function() {
             this.moveToTop();
             document.body.style.cursor = "move";
@@ -944,6 +972,7 @@ window.onload = function() {
         bGroup.on("mouseout", function() {
             document.body.style.cursor = "default";
         });
+        // Delete bar if alt-clicked, then re-number and update systems
         bGroup.on("click", function(e) {
             if (e.altKey) {
                 system.getLayer().remove(bGroup);
@@ -952,8 +981,8 @@ window.onload = function() {
                 resizeSystem(system);
             }
         });
+        // Recalculate system membership, and system size on dragend
         bGroup.on("dragend", function(e) {
-            //Recalculate system membership, and system size
             var nearSystem = findNearestSystem(this);
             if (nearSystem !== system) {
                 system.getLayer().remove(bGroup);
@@ -967,14 +996,17 @@ window.onload = function() {
             system = nearSystem;
         });
         
+        // Add anchors to bar
         addAnchor(bGroup, invisiBox, 0, 0, "tl");
         addAnchor(bGroup, invisiBox, w, 0, "tr");
         addAnchor(bGroup, invisiBox, w, h, "lr");
         addAnchor(bGroup, invisiBox, 0, h, "ll");
         
+        // By adding group to layer, bars will not move when system is resized/relocated
         system.getLayer().add(bGroup);
     }
     
+    // Setup
     imageObj.onload = function () {
         var scaleVal = iWidth / imageObj.width;
         
@@ -1020,6 +1052,7 @@ window.onload = function() {
         //addStaff(stage, tl, br, lines);
         */
         
+        // Parse MEI to build object system
         $.get('static/mei/detmoldbars.mei', function(data) {
             var meiDoc = $.parseXML(data);
             var mei = $(meiDoc);
