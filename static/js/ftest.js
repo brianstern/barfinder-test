@@ -5,7 +5,9 @@ window.onload = function() {
     var scaleVal = 1;
     var imageObj = new Image();
     var systems = [];
-    var minBar = 17;
+    var minBar = 1;
+    var textSize = 15;
+    var textPadding = 3;
     
     /*
     function getSubStaffByNumber(group, number) {
@@ -683,11 +685,15 @@ window.onload = function() {
     
     // Update the numbering of the bars on the page to be in the correct order
     function updateNumbers() {
+        // Sort ranking function for sorting bars by x-coordinate
+        var sortBarsByX = function(a, b) {
+            return a.getX() - b.getX();
+        };
         var currentNumber = minBar;
         var i, j, changed;
         for (i = 0; i < systems.length; i++) {
             // Sort bars by x-coordinate
-            systems[i].attrs.bars = systems[i].attrs.bars.sort(function(a, b) { return a.getX() - b.getX()});
+            systems[i].attrs.bars = systems[i].attrs.bars.sort(sortBarsByX);
             changed = false;
             for (j = 0; j < systems[i].attrs.bars.length; j++) {
                 // Reassign bar number if the current one is incorrect
@@ -765,7 +771,6 @@ window.onload = function() {
         
         var width = lrPos.x - tlPos.x;
         var height = lrPos.y - tlPos.y;
-        
         bGroup.setPosition({
             x: tlPos.x,
             y: tlPos.y
@@ -802,6 +807,14 @@ window.onload = function() {
         bar.setHeight(height);
         iBox.setWidth(width + (barMargin * 2));
         iBox.setHeight(height + (barMargin * 2));
+        
+        barNumber.setFontSize(textSize);
+        if (width < (barNumber.getTextWidth() + 6)) {
+            barNumber.setFontSize(textSize * (width / (barNumber.getTextWidth() + 6)));
+        }
+        if (height < (barNumber.getTextHeight() + 6)) {
+            barNumber.setFontSize(textSize * (height / (barNumber.getTextHeight() + 6)));
+        }
     }
     
     // Add an anchor to a bar
@@ -899,7 +912,7 @@ window.onload = function() {
                 break;
             }
         }
-        if (i == system.children.length) {
+        if (i === system.children.length) {
             system.attrs.bars.push(bGroup);
         }
         
@@ -921,15 +934,22 @@ window.onload = function() {
         var barText = new Kinetic.Text({
             x: 0,
             y: 0,
-            fontSize: 15,
+            fontSize: textSize,
             fontFamily: "Calibri",
             textFill: "white",
             fill: 'black',
             text: number.toString(),
             align: 'center',
-            padding: 3,
+            padding: textPadding,
             name: "barnumber"
         });
+        
+        if (w < (barText.getTextWidth() + (textPadding * 2))) {
+            barText.setFontSize(textSize * (w / (barText.getTextWidth() + 6)));
+        }
+        if (h < (barText.getTextHeight() + (textPadding * 2))) {
+            barText.setFontSize(textSize * (h / (barText.getTextHeight() + 6)));
+        }
         
         bGroup.add(barText);
         
@@ -1016,7 +1036,7 @@ window.onload = function() {
             height: imageObj.height * scaleVal
         });
         
-        var scaleVal = iWidth / imageObj.width;
+        scaleVal = iWidth / imageObj.width;
         
         var img = new Kinetic.Image({
             x: 0,
@@ -1118,6 +1138,7 @@ window.onload = function() {
             stage.draw();
         });
         
+        // Add new bar on shift-click
         img.on("click", function(e) {
             if (e.shiftKey) {
                 //Add new bar, 25x25, calculate system membership
@@ -1128,6 +1149,7 @@ window.onload = function() {
                 updateNumbers();
             }
         });
+        // Cursor styling reset
         img.on("mouseover", function() {
             document.body.style.cursor = "default";
         });
