@@ -884,15 +884,18 @@ window.onload = function() {
         group.add(anchor);
     }
     
+    function genUUID() {
+        return "m-" + uuid.v1();
+    }
+    
     // Add a bar to a system
     function addBar(stage, system, x, y, w, h, number, id, facs) {
         if (id === undefined) {
-            id = "m-" + uuid.v1();
+            id = genUUID()
         }
         if (facs === undefined) {
-            facs = "m-" + uuid.v1();
+            facs = genUUID();
         }
-        
         
         var bGroup = new Kinetic.Group({
             x: x,
@@ -1026,6 +1029,66 @@ window.onload = function() {
         system.getLayer().add(bGroup);
     }
     
+    function generateMEI() {
+        var i, j, bars;
+        var outMEI = "";
+        outMEI += "<mei xml:id=\"" + genUUID() + "\" meiversion\"2012\">";
+            outMEI += "<meiHead xml:id=\"" + genUUID() + "\"/>";
+            outMEI += "<music xml:id=\"" + genUUID() + "\">";
+                outMEI += "<facsimile xml:id=\"" + genUUID() + "\">";
+                    outMEI += "<surface xml:id=\"" + genUUID() + "\">";
+                        for (i = 0; i < systems.length; i++) {
+                            outMEI += "<zone xml:id=\"" + systems[i].attrs.facs + "\" ";
+                            outMEI += "ulx=\"" + system.attrs.x + "\" ";
+                            outMEI += "uly=\"" + system.attrs.y + "\" ";
+                            outMEI += "lrx=\"" + (system.attrs.x + system.attrs.width) + "\" ";
+                            outMEI += "lry=\"" + (system.attrs.y + system.attrs.height) + "\"";
+                            outMEI += "/>";
+                        }/*
+                        UPDATE WITH NEW MEI
+                        for (i = 0; i < systems.length; i++) {
+                            bars = systems[i].attrs.bars;
+                            for (j = 0; j < bars.length; j++) {
+                                var barPos = bars[i].getAbsolutePosition();
+                                outMEI += "<zone xml:id=\"" + bars[i].attrs.facs + "\" ";
+                                outMEI += "ulx=\"" + barPos.x + "\" ";
+                                outMEI += "uly=\"" + barPos.y + "\" ";
+                                outMEI += "lrx=\"" + (barPos.x + bars[i].getWidth()) + "\" ";
+                                outMEI += "lry=\"" + (barPos.y + bars[i].getHeight()) + "\"";
+                                outMEI += "/>";
+                            }
+                        }*/
+                    outMEI += "</surface>"
+                outMEI += "</facsimile>";
+                outMEI += "<layout xml:id=\"" + genUUID() + "\">";
+                    outMEI += "<page xml:id=\"" + genUUID() + "\">";
+                        for (i = 0; i < systems.length; i++) {
+                            outMEI += "<system xml:id=\"" + systems[i].attrs.id + "\" facs=\"" + systems[i].attrs.facs + "\"/>";
+                        }
+                    outMEI += "</page>";
+                outMEI += "</layout>";
+                outMEI += "<body xml:id=\"" + genUUID() + "\">";
+                    outMEI += "<mdiv xml:id=\"" + genUUID() + "\">";
+                        outMEI += "<score xml:id=\"" + genUUID() + "\">";
+                            outMEI += "<scoreDef xml:id=\"" + genUUID() + "\">";
+                                outMEI += "<staffGrp xml:id=\"" + genUUID() + "\">";
+                                    outMEI += "<staffDef xml:id=\"" + genUUID() + "\" n=\"1\"/>";
+                                outMEI += "</staffGrp>"
+                            outMEI += "</scoreDef>";
+                            outMEI += "<section xml:id=\"" + genUUID() + "\">";
+                                outMEI += "<staff xml:id=\"" + genUUID() + "\" n=\"1\">";
+                                    outMEI += "<layer xml:id=\"" + genUUID() + "\" n=\"1\">";
+                                        //UPDATE WITH NEW MEI
+                                    outMEI += "</layer>";
+                                outMEI += "</staff>";
+                            outMEI += "</section>";
+                        outMEI += "</score>";
+                    outMEI += "</mdiv>";
+                outMEI += "</body>";
+            outMEI += "</music>";
+        outMEI += "</mei>";
+    }
+    
     // Setup
     imageObj.onload = function () {
         var scaleVal = iWidth / imageObj.width;
@@ -1153,6 +1216,8 @@ window.onload = function() {
         img.on("mouseover", function() {
             document.body.style.cursor = "default";
         });
+        
+        //Submission Function: Turn everything into MEI
         
     };
     imageObj.src = 'static/images/detmoldbars.jpg';
