@@ -891,7 +891,7 @@ window.onload = function() {
     // Add a bar to a system
     function addBar(stage, system, x, y, w, h, number, id, facs) {
         if (id === undefined) {
-            id = genUUID()
+            id = genUUID();
         }
         if (facs === undefined) {
             facs = genUUID();
@@ -1039,10 +1039,10 @@ window.onload = function() {
                     outMEI += "<surface xml:id=\"" + genUUID() + "\">";
                         for (i = 0; i < systems.length; i++) {
                             outMEI += "<zone xml:id=\"" + systems[i].attrs.facs + "\" ";
-                            outMEI += "ulx=\"" + system.attrs.x + "\" ";
-                            outMEI += "uly=\"" + system.attrs.y + "\" ";
-                            outMEI += "lrx=\"" + (system.attrs.x + system.attrs.width) + "\" ";
-                            outMEI += "lry=\"" + (system.attrs.y + system.attrs.height) + "\"";
+                            outMEI += "ulx=\"" + systems[i].attrs.x + "\" ";
+                            outMEI += "uly=\"" + systems[i].attrs.y + "\" ";
+                            outMEI += "lrx=\"" + (systems[i].attrs.x + systems[i].attrs.width) + "\" ";
+                            outMEI += "lry=\"" + (systems[i].attrs.y + systems[i].attrs.height) + "\"";
                             outMEI += "/>";
                         }/*
                         UPDATE WITH NEW MEI
@@ -1058,7 +1058,7 @@ window.onload = function() {
                                 outMEI += "/>";
                             }
                         }*/
-                    outMEI += "</surface>"
+                    outMEI += "</surface>";
                 outMEI += "</facsimile>";
                 outMEI += "<layout xml:id=\"" + genUUID() + "\">";
                     outMEI += "<page xml:id=\"" + genUUID() + "\">";
@@ -1073,7 +1073,7 @@ window.onload = function() {
                             outMEI += "<scoreDef xml:id=\"" + genUUID() + "\">";
                                 outMEI += "<staffGrp xml:id=\"" + genUUID() + "\">";
                                     outMEI += "<staffDef xml:id=\"" + genUUID() + "\" n=\"1\"/>";
-                                outMEI += "</staffGrp>"
+                                outMEI += "</staffGrp>";
                             outMEI += "</scoreDef>";
                             outMEI += "<section xml:id=\"" + genUUID() + "\">";
                                 outMEI += "<staff xml:id=\"" + genUUID() + "\" n=\"1\">";
