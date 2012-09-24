@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mei xmlns="http://www.music-encoding.org/ns/mei" xml:id="m-23a6101c-e1f6-4f23-9b88-9a2bcb4b93a5" meiversion="2012">
+  <meiHead xml:id="m-77873c61-66b5-4d47-819d-d03c18e532df"/>
+  <music xml:id="m-e780fe4b-395b-444e-b11a-9af82d3c469b">
+    <facsimile xml:id="m-fcf953cb-f834-4b62-8470-638c9be65480">
+      <surface xml:id="m-0107a9f9-7ae1-4e18-9d8c-d99fdb0b0e36">
+        <zone xml:id="m-cc249574-977b-418b-a7a1-73d7b23b9d30" ulx="986" uly="830" lrx="1603" lry="904"/>
+        <zone xml:id="m-a99e8970-b0cc-4664-b3ac-2b5c81ae70d5" ulx="1603" uly="830" lrx="2133" lry="904"/>
+        <zone xml:id="m-23f652bb-dc0c-44a2-8400-68438af49d53" ulx="2133" uly="830" lrx="2661" lry="904"/>
+        <zone xml:id="m-346995d7-f8c1-4f58-b4ae-ab1b88abf309" ulx="2661" uly="830" lrx="3195" lry="904"/>
+        <zone xml:id="m-73b393b0-045e-482d-a39b-49fa7a6d3d81" ulx="3195" uly="830" lrx="3755" lry="904"/>
+        <zone xml:id="m-e0205876-8e9d-4f38-8871-a94df6159e74" ulx="919" uly="1021" lrx="920" lry="1092"/>
+        <zone xml:id="m-40bc284a-c6c9-46e4-a41d-3cb8bd6919bc" ulx="920" uly="1021" lrx="923" lry="1092"/>
+        <zone xml:id="m-864567a0-4a7c-4d65-95d1-cd5126d0acb8" ulx="923" uly="1021" lrx="3753" lry="1092"/>
+        <zone xml:id="m-e662f1de-30e5-4d16-a1bf-11aa40562d47" ulx="919" uly="830" lrx="1603" lry="1092"/>
+        <zone xml:id="m-44b073ce-9fed-4112-bb22-31ad5c3f643f" ulx="920" uly="830" lrx="2133" lry="1092"/>
+        <zone xml:id="m-95bf4bb0-9569-47ee-9111-86f87ed878bf" ulx="923" uly="830" lrx="3753" lry="1092"/>
+        <zone xml:id="m-c99a47c8-b75c-4f5d-968b-dc6ce34cc13c" ulx="2661" uly="830" lrx="3195" lry="904"/>
+        <zone xml:id="m-b1b342c2-25fa-4747-b44f-b92ae27b9c07" ulx="3195" uly="830" lrx="3755" lry="904"/>
+        <zone xml:id="m-2af0d27c-7b36-47f8-97ee-9554c030bd5c" ulx="677" uly="1210" lrx="664" lry="1284"/>
+        <zone xml:id="m-dcdb0e49-30f4-4ee2-834c-32fdc3dcca83" ulx="664" uly="1210" lrx="1378" lry="1284"/>
+        <zone xml:id="m-6bc7346b-0457-4eee-8f74-ea8ebe832bd4" ulx="1378" uly="1210" lrx="1513" lry="1284"/>
+        <zone xml:id="m-58702077-90e7-41ad-aa76-a1c39d856e81" ulx="1513" uly="1210" lrx="1963" lry="1284"/>
+        <zone xml:id="m-20dc4bc5-7e4e-479e-ac04-6206f446162f" ulx="1963" uly="1210" lrx="2553" lry="1284"/>
+        <zone xml:id="m-d7719e4f-8400-483a-a400-cd3b32704e44" ulx="2553" uly="1210" lrx="3135" lry="1284"/>
+        <zone xml:id="m-fac4ee49-c19e-4c7c-8764-c770d682a557" ulx="3135" uly="1210" lrx="3738" lry="1284"/>
+        <zone xml:id="m-c0e8daa8-6670-4444-921f-454c928db54c" ulx="670" uly="1401" lrx="828" lry="1476"/>
+        <zone xml:id="m-8e43c130-2e73-482e-b549-66a2e3b8787d" ulx="828" uly="1401" lrx="3738" lry="1476"/>
+        <zone xml:id="m-b62a9d7a-7556-4a1e-b8af-a4b64af77ebb" ulx="670" uly="1210" lrx="828" lry="1476"/>
+        <zone xml:id="m-ca1df301-3c82-4975-8f20-2f2091cdf5d4" ulx="664" uly="1210" lrx="3738" lry="1476"/>
+        <zone xml:id="m-5db87a2c-40a4-4786-b617-20a0a1a79a3e" ulx="1378" uly="1210" lrx="1513" lry="1284"/>
+        <zone xml:id="m-a67375be-b4b5-4d77-bea5-1c73d31724bf" ulx="1513" uly="1210" lrx="1963" lry="1284"/>
+        <zone xml:id="m-a7f305af-9710-4075-8f47-e59e260a8964" ulx="1963" uly="1210" lrx="2553" lry="1284"/>
+        <zone xml:id="m-613cbf37-28dd-4396-bd5a-d02dc83fe5d1" ulx="2553" uly="1210" lrx="3135" lry="1284"/>
+        <zone xml:id="m-2371746c-bb27-4cdd-b2ac-cf85838df10b" ulx="3135" uly="1210" lrx="3738" lry="1284"/>
+        <zone xml:id="m-ceac766b-13d7-47e4-9852-69624adc5348" ulx="881" uly="1589" lrx="1210" lry="1664"/>
+        <zone xml:id="m-465afe29-1fc5-4868-8143-abf94edddb40" ulx="1210" uly="1589" lrx="1412" lry="1664"/>
+        <zone xml:id="m-033e0066-6085-45c6-bbd1-b32c923dd968" ulx="1412" uly="1589" lrx="1708" lry="1664"/>
+        <zone xml:id="m-3c8f3c9d-9e1c-446d-b855-da174f3f91d6" ulx="1708" uly="1589" lrx="2006" lry="1664"/>
+        <zone xml:id="m-604fce8f-4740-4736-a4fb-10f4742e5914" ulx="2006" uly="1589" lrx="2308" lry="1664"/>
+        <zone xml:id="m-0d82ec7b-3a56-4364-9efb-93f3b7823d73" ulx="2308" uly="1589" lrx="2603" lry="1664"/>
+        <zone xml:id="m-a6c07334-274a-4635-88a3-e1feacb21836" ulx="2603" uly="1589" lrx="2905" lry="1664"/>
+        <zone xml:id="m-4e156b8a-b2f1-4148-9257-db7d20f4a435" ulx="2905" uly="1589" lrx="3207" lry="1664"/>
+        <zone xml:id="m-0c9f4593-dbd9-43fe-828b-3be4e69b4355" ulx="3207" uly="1589" lrx="3508" lry="1664"/>
+        <zone xml:id="m-b04072b8-cca7-4022-99b8-ae917d9f329d" ulx="3508" uly="1589" lrx="3740" lry="1664"/>
+        <zone xml:id="m-6837439c-1b2d-4039-a5af-4cd5a4283e8f" ulx="881" uly="1780" lrx="678" lry="1850"/>
+        <zone xml:id="m-f819c9b8-b51e-4b0d-a1ef-6881484676f5" ulx="678" uly="1780" lrx="1209" lry="1850"/>
+        <zone xml:id="m-a2ee96b3-91ce-43b0-baff-ba08d640b001" ulx="1209" uly="1780" lrx="1410" lry="1850"/>
+        <zone xml:id="m-1c5ae1f5-3434-4574-9485-5b02afbdbb54" ulx="1410" uly="1780" lrx="1705" lry="1850"/>
+        <zone xml:id="m-82e50619-d766-490a-b482-541cb111ce63" ulx="1705" uly="1780" lrx="2006" lry="1850"/>
+        <zone xml:id="m-5804835c-1cda-499e-af43-82fb54ebf67c" ulx="2006" uly="1780" lrx="2306" lry="1850"/>
+        <zone xml:id="m-d5dbb6ea-f9e7-40cb-9856-0b0cb7038028" ulx="2306" uly="1780" lrx="2602" lry="1850"/>
+        <zone xml:id="m-04c624b7-7105-4a00-8c1f-5c054b621e9e" ulx="2602" uly="1780" lrx="2904" lry="1850"/>
+        <zone xml:id="m-12c4b615-2a00-4bd4-a05a-54b619027bcf" ulx="2904" uly="1780" lrx="3208" lry="1850"/>
+        <zone xml:id="m-a3b3b8a2-2073-442f-b5eb-25faa63e85a9" ulx="3208" uly="1780" lrx="3509" lry="1850"/>
+        <zone xml:id="m-913d7cba-4360-4f95-9c1a-67f0db491da5" ulx="3509" uly="1780" lrx="3737" lry="1850"/>
+        <zone xml:id="m-a14de00a-34dc-48dc-94ec-d77b5696f310" ulx="910" uly="1969" lrx="687" lry="2046"/>
+        <zone xml:id="m-3131fa11-e609-4c39-8c8c-e4e6903aa31f" ulx="687" uly="1969" lrx="1205" lry="2046"/>
+        <zone xml:id="m-ca504f0c-ac7c-4065-8810-6832f9e9bdad" ulx="1205" uly="1969" lrx="1410" lry="2046"/>
+        <zone xml:id="m-78db7663-0d2b-48cf-8ebf-5d257a0a6c07" ulx="1410" uly="1969" lrx="1704" lry="2046"/>
+        <zone xml:id="m-86d9696b-eeee-4db3-96c5-b5d1b910f854" ulx="1704" uly="1969" lrx="2003" lry="2046"/>
+        <zone xml:id="m-a741ed99-d161-492c-9003-ad34b5c6635f" ulx="2003" uly="1969" lrx="2305" lry="2046"/>
+        <zone xml:id="m-6cb25902-4e14-40c0-b0aa-5c8d54c246a1" ulx="2305" uly="1969" lrx="2602" lry="2046"/>
+        <zone xml:id="m-0c49d300-02d2-4b58-86af-d6ffb78ddb38" ulx="2602" uly="1969" lrx="2904" lry="2046"/>
+        <zone xml:id="m-062b67f4-fafc-4438-aa60-04f78991556a" ulx="2904" uly="1969" lrx="2985" lry="2046"/>
+        <zone xml:id="m-f49eb199-8d76-47e6-9839-d5dfc9ab0906" ulx="2985" uly="1969" lrx="3208" lry="2046"/>
+        <zone xml:id="m-748a1217-6137-432f-9aaa-1f96eaebd40d" ulx="3208" uly="1969" lrx="3509" lry="2046"/>
+        <zone xml:id="m-fe02653f-8ac7-4721-ab3e-1e29146bfc99" ulx="3509" uly="1969" lrx="3736" lry="2046"/>
+        <zone xml:id="m-97a06ba0-f12e-4562-85cc-d3bebabbb929" ulx="886" uly="2156" lrx="1203" lry="2234"/>
+        <zone xml:id="m-379bf821-49ef-4e09-a181-e3c7269dd042" ulx="1203" uly="2156" lrx="1407" lry="2234"/>
+        <zone xml:id="m-f1567af1-d4a8-401f-8b08-fed4ae833541" ulx="1407" uly="2156" lrx="1702" lry="2234"/>
+        <zone xml:id="m-1799aa81-07d3-4f08-975c-5994d76e662b" ulx="1702" uly="2156" lrx="2001" lry="2234"/>
+        <zone xml:id="m-2dfe4184-199e-4245-b161-789ecccfd936" ulx="2001" uly="2156" lrx="2303" lry="2234"/>
+        <zone xml:id="m-9b2880a4-fb09-4af8-9bf4-7486e05b978d" ulx="2303" uly="2156" lrx="2600" lry="2234"/>
+        <zone xml:id="m-2eb7ab4a-1bba-4433-9a0b-2dbe69848a4b" ulx="2600" uly="2156" lrx="2903" lry="2234"/>
+        <zone xml:id="m-79c17159-249e-4215-ae76-248479cd2775" ulx="2903" uly="2156" lrx="3209" lry="2234"/>
+        <zone xml:id="m-523f9791-dbf2-4623-876a-6b0b4656ffae" ulx="3209" uly="2156" lrx="3675" lry="2234"/>
+        <zone xml:id="m-d743130d-bc4a-4dd3-902d-dee609937ef1" ulx="879" uly="2344" lrx="625" lry="2426"/>
+        <zone xml:id="m-2650ceab-cf2c-41e8-94eb-34afefda6644" ulx="625" uly="2344" lrx="1198" lry="2426"/>
+        <zone xml:id="m-ed366d6e-39ca-4ce7-881f-acff69621446" ulx="1198" uly="2344" lrx="1699" lry="2426"/>
+        <zone xml:id="m-0ba400ff-8646-4420-a04b-2b0ccd2b0448" ulx="1699" uly="2344" lrx="1999" lry="2426"/>
+        <zone xml:id="m-a53fe4a1-fe95-47c6-a12d-94a504b075e2" ulx="1999" uly="2344" lrx="2301" lry="2426"/>
+        <zone xml:id="m-ad3f2280-b11c-4e31-a3ac-17e32bcdbd5f" ulx="2301" uly="2344" lrx="2901" lry="2426"/>
+        <zone xml:id="m-f6026620-a853-44cc-84c4-4246d8b8fa6c" ulx="2901" uly="2344" lrx="3510" lry="2426"/>
+        <zone xml:id="m-6a492e99-2f64-4db1-a886-56a50529ad38" ulx="3510" uly="2344" lrx="2629" lry="2426"/>
+        <zone xml:id="m-7e53a5af-02b3-4084-b2d9-7a66882a702d" ulx="976" uly="2532" lrx="1403" lry="2618"/>
+        <zone xml:id="m-82f8d1f2-6df0-4326-af18-87b6f7c3cc77" ulx="1403" uly="2532" lrx="2598" lry="2618"/>
+        <zone xml:id="m-c354ca1f-2b1a-4c6e-968a-0da4d91ccf34" ulx="2598" uly="2532" lrx="3205" lry="2618"/>
+        <zone xml:id="m-29873d5e-6f71-4db5-8ee4-93fe60dfd104" ulx="3205" uly="2532" lrx="3509" lry="2618"/>
+        <zone xml:id="m-bd096046-363f-41b9-a508-2c6f249f78b0" ulx="3509" uly="2532" lrx="3510" lry="2618"/>
+        <zone xml:id="m-987286ef-276a-420e-949a-5fb97c290f85" ulx="3510" uly="2532" lrx="2545" lry="2618"/>
+        <zone xml:id="m-81484ef0-dbf8-447e-924e-68dbc9ff0857" ulx="879" uly="1589" lrx="1403" lry="2618"/>
+        <zone xml:id="m-61d10164-f075-4090-b88d-552d8e9d819c" ulx="625" uly="1589" lrx="2598" lry="2618"/>
+        <zone xml:id="m-e24ece03-e1ad-4938-9533-8aae9c5b3874" ulx="1198" uly="1589" lrx="3205" lry="2618"/>
+        <zone xml:id="m-f8408d85-614f-428a-b468-0d4c7d8ff4a9" ulx="1410" uly="1589" lrx="3509" lry="2618"/>
+        <zone xml:id="m-3df6bce6-335a-4b7b-962b-f9ecbbc156b6" ulx="1704" uly="1589" lrx="3510" lry="2618"/>
+        <zone xml:id="m-799d3ab2-b0d5-47d0-b5bc-abcb87307608" ulx="2003" uly="1589" lrx="2901" lry="2618"/>
+        <zone xml:id="m-7f5f06e2-38a2-48b8-b308-b2446d73d2e8" ulx="2305" uly="1589" lrx="3510" lry="2426"/>
+        <zone xml:id="m-f5c228f1-8d19-4794-974a-a52897bc5742" ulx="2602" uly="1589" lrx="3209" lry="2426"/>
+        <zone xml:id="m-c6cc903a-acf9-4cb4-b5c2-ab5cea294f04" ulx="2904" uly="1589" lrx="3675" lry="2234"/>
+        <zone xml:id="m-dd25ec85-0c51-4747-b3e9-c72923f7e04d" ulx="2985" uly="1589" lrx="3740" lry="2046"/>
+        <zone xml:id="m-985ea57e-8170-43fa-acfa-8e591c7c0a0b" ulx="3208" uly="1780" lrx="3737" lry="2046"/>
+        <zone xml:id="m-f3732bff-05f1-4431-bfd3-15710983a466" ulx="3509" uly="1969" lrx="3736" lry="2046"/>
+      </surface>
+    </facsimile>
+    <body xml:id="m-8de157cc-f205-4e4c-b247-d2a2b5d1b47f">
+      <mdiv xml:id="m-8fc68fde-5b0f-4398-a998-6fde9c5d1f5f">
+        <score xml:id="m-7946715c-bf5c-4e35-98f6-8f2537528059">
+          <scoreDef xml:id="m-b8cf9b28-6b11-406a-9497-1aa44a4be92b">
+            <staffGrp xml:id="m-d3123bc7-e66c-41e2-b677-0be1615ded15">
+              <staffDef xml:id="m-e0fe0dbe-ef39-494b-9585-d199478eac44" n="1"/>
+              <staffDef xml:id="m-02048efc-3dd6-489a-a8eb-5abc66cd07d0" n="2"/>
+              <staffDef xml:id="m-80b022ce-5dec-4fe2-9c62-d2a9618811bd" n="3"/>
+              <staffDef xml:id="m-e0a2a6b8-2f58-4ec7-afd4-16702606dbd6" n="4"/>
+              <staffGrp xml:id="m-57837c99-7740-4e4f-b16e-cd5c785f0d3e" barthru="true">
+                <staffDef xml:id="m-b8715e8a-d0ea-4eea-8efa-c1649522357c" n="5"/>
+                <staffDef xml:id="m-eb1e4a83-340f-48c4-b16f-fa0bf1033095" n="6"/>
+              </staffGrp>
+            </staffGrp>
+          </scoreDef>
+          <section xml:id="m-fc8cf8b0-796a-489a-8584-7046a6d003f9">
+            <measure xml:id="m-f57fcc87-875a-4d06-a9a4-3a5868d44f2d" n="1" facs="m-e662f1de-30e5-4d16-a1bf-11aa40562d47">
+              <staff xml:id="m-0b782800-6b76-4305-894c-ba79369aaa36" n="5" facs="m-cc249574-977b-418b-a7a1-73d7b23b9d30"/>
+              <staff xml:id="m-fc47e902-d62b-4113-b5ee-2bb3b0ee091d" n="6" facs="m-e0205876-8e9d-4f38-8871-a94df6159e74"/>
+            </measure>
+            <measure xml:id="m-403f2990-9af6-448f-af51-c57b4b7a3bbf" n="2" facs="m-44b073ce-9fed-4112-bb22-31ad5c3f643f">
+              <staff xml:id="m-7227d567-b47e-42bf-a064-193b6eb65dea" n="5" facs="m-a99e8970-b0cc-4664-b3ac-2b5c81ae70d5"/>
+              <staff xml:id="m-590514ff-7d94-4814-8ce6-bbc24a0a5f65" n="6" facs="m-40bc284a-c6c9-46e4-a41d-3cb8bd6919bc"/>
+            </measure>
+            <measure xml:id="m-18c57dbf-6529-463c-94d4-711a542697aa" n="3" facs="m-95bf4bb0-9569-47ee-9111-86f87ed878bf">
+              <staff xml:id="m-db8aa5c9-cf4f-4293-a705-5742a33a160a" n="5" facs="m-23f652bb-dc0c-44a2-8400-68438af49d53"/>
+              <staff xml:id="m-35b304ac-0629-4eb8-a6e4-97df862af2ee" n="6" facs="m-864567a0-4a7c-4d65-95d1-cd5126d0acb8"/>
+            </measure>
+            <measure xml:id="m-85e65a6f-2e23-4f70-93ef-03eb4aa78441" n="4" facs="m-c99a47c8-b75c-4f5d-968b-dc6ce34cc13c">
+              <staff xml:id="m-7622553e-46d8-4380-925f-5b14c03a95be" n="5" facs="m-346995d7-f8c1-4f58-b4ae-ab1b88abf309"/>
+            </measure>
+            <measure xml:id="m-3b6dfe2d-ab71-477e-a059-55de9bce1428" n="5" facs="m-b1b342c2-25fa-4747-b44f-b92ae27b9c07">
+              <staff xml:id="m-2916e50d-779f-4680-afc6-9ac908468c12" n="5" facs="m-73b393b0-045e-482d-a39b-49fa7a6d3d81"/>
+            </measure>
+            <sb xml:id="m-422bbcfd-9a71-4e09-a78d-2ce055d4b045"/>
+            <measure xml:id="m-16377f2a-a159-4e4d-ae42-2557bfb2321a" n="6" facs="m-b62a9d7a-7556-4a1e-b8af-a4b64af77ebb">
+              <staff xml:id="m-7b4b4e6d-48a4-426f-9d89-51d8da2abb4f" n="5" facs="m-2af0d27c-7b36-47f8-97ee-9554c030bd5c"/>
+              <staff xml:id="m-8a3eb162-e49e-4d24-8763-25ad118af3a5" n="6" facs="m-c0e8daa8-6670-4444-921f-454c928db54c"/>
+            </measure>
+            <measure xml:id="m-2d73aba4-5a3f-469e-b7a8-9e56b12ab6d7" n="7" facs="m-ca1df301-3c82-4975-8f20-2f2091cdf5d4">
+              <staff xml:id="m-0ed0c00d-9998-4793-8328-e5621797533d" n="5" facs="m-dcdb0e49-30f4-4ee2-834c-32fdc3dcca83"/>
+              <staff xml:id="m-7a05a9ae-2826-4bc7-ad2d-df4598013048" n="6" facs="m-8e43c130-2e73-482e-b549-66a2e3b8787d"/>
+            </measure>
+            <measure xml:id="m-82d25665-bc5e-4482-a3e2-e841470e5c60" n="8" facs="m-5db87a2c-40a4-4786-b617-20a0a1a79a3e">
+              <staff xml:id="m-662978af-0ef7-40ca-90ca-4e197b5fd7b2" n="5" facs="m-6bc7346b-0457-4eee-8f74-ea8ebe832bd4"/>
+            </measure>
+            <measure xml:id="m-472df5d8-0b79-4bd2-864b-fecee16efbae" n="9" facs="m-a67375be-b4b5-4d77-bea5-1c73d31724bf">
+              <staff xml:id="m-57983345-6f6d-40c8-a38b-5ba157e9bdab" n="5" facs="m-58702077-90e7-41ad-aa76-a1c39d856e81"/>
+            </measure>
+            <measure xml:id="m-8d1c22f0-59ae-43f7-b17a-b3ee8358f7cf" n="10" facs="m-a7f305af-9710-4075-8f47-e59e260a8964">
+              <staff xml:id="m-740a4f47-3305-49ea-bb95-98be4fe3b285" n="5" facs="m-20dc4bc5-7e4e-479e-ac04-6206f446162f"/>
+            </measure>
+            <measure xml:id="m-b9736292-9ce4-4689-9d23-2b950e71d518" n="11" facs="m-613cbf37-28dd-4396-bd5a-d02dc83fe5d1">
+              <staff xml:id="m-375c5536-0948-45f0-ba67-d305b67cd69d" n="5" facs="m-d7719e4f-8400-483a-a400-cd3b32704e44"/>
+            </measure>
+            <measure xml:id="m-768b9c87-fc9f-464a-958d-772258e5b903" n="12" facs="m-2371746c-bb27-4cdd-b2ac-cf85838df10b">
+              <staff xml:id="m-67fe0d5b-36f9-41b4-bfca-4b445ec12883" n="5" facs="m-fac4ee49-c19e-4c7c-8764-c770d682a557"/>
+            </measure>
+            <sb xml:id="m-2c7ec824-6e9f-4cea-a966-badf98ab54d0"/>
+            <measure xml:id="m-c817bdcc-5836-452a-90b6-9d2d8fc23e45" n="13" facs="m-81484ef0-dbf8-447e-924e-68dbc9ff0857">
+              <staff xml:id="m-a8202706-41b0-4e54-9810-fdb1fdc9ab71" n="1" facs="m-ceac766b-13d7-47e4-9852-69624adc5348"/>
+              <staff xml:id="m-d5ae656f-7824-4d17-a612-1956f4485183" n="2" facs="m-6837439c-1b2d-4039-a5af-4cd5a4283e8f"/>
+              <staff xml:id="m-1ab7f858-0280-40f3-a258-7b5235a0183a" n="3" facs="m-a14de00a-34dc-48dc-94ec-d77b5696f310"/>
+              <staff xml:id="m-9a21c0c6-8828-427a-9f7a-a854eb9472cc" n="4" facs="m-97a06ba0-f12e-4562-85cc-d3bebabbb929"/>
+              <staff xml:id="m-3ee4c5c6-7017-4de0-98d8-038832f37924" n="5" facs="m-d743130d-bc4a-4dd3-902d-dee609937ef1"/>
+              <staff xml:id="m-240edc48-c371-49d3-82dd-c52528349762" n="6" facs="m-7e53a5af-02b3-4084-b2d9-7a66882a702d"/>
+            </measure>
+            <measure xml:id="m-3b97d60e-e744-4b6f-853f-c6b2c2f2bd2f" n="14" facs="m-61d10164-f075-4090-b88d-552d8e9d819c">
+              <staff xml:id="m-a23fe38f-fcd6-429f-8509-e24c48f286b9" n="1" facs="m-465afe29-1fc5-4868-8143-abf94edddb40"/>
+              <staff xml:id="m-c8bdd3e3-4aa3-472c-8e92-c59437665f94" n="2" facs="m-f819c9b8-b51e-4b0d-a1ef-6881484676f5"/>
+              <staff xml:id="m-334e8eaa-8dc8-46eb-b2a5-dc0edcc8e754" n="3" facs="m-3131fa11-e609-4c39-8c8c-e4e6903aa31f"/>
+              <staff xml:id="m-374cf371-5414-4d6d-bc60-a95365f6654f" n="4" facs="m-379bf821-49ef-4e09-a181-e3c7269dd042"/>
+              <staff xml:id="m-8731f878-e422-4752-9443-d67489f57abb" n="5" facs="m-2650ceab-cf2c-41e8-94eb-34afefda6644"/>
+              <staff xml:id="m-52f596a9-3838-4ad4-a7ad-7f7a17296a46" n="6" facs="m-82f8d1f2-6df0-4326-af18-87b6f7c3cc77"/>
+            </measure>
+            <measure xml:id="m-c0c60a54-2c35-44f7-820f-fccf5bdd7427" n="15" facs="m-e24ece03-e1ad-4938-9533-8aae9c5b3874">
+              <staff xml:id="m-910b84b7-05c2-4b91-ba41-6bb11a226b16" n="1" facs="m-033e0066-6085-45c6-bbd1-b32c923dd968"/>
+              <staff xml:id="m-3f3f5caa-ec6a-4c87-b8a2-71bc0d50280d" n="2" facs="m-a2ee96b3-91ce-43b0-baff-ba08d640b001"/>
+              <staff xml:id="m-9a43993c-98b9-4ab0-8539-ee0e00fab89f" n="3" facs="m-ca504f0c-ac7c-4065-8810-6832f9e9bdad"/>
+              <staff xml:id="m-b3d973d8-ecac-408d-9319-7488f4dcd235" n="4" facs="m-f1567af1-d4a8-401f-8b08-fed4ae833541"/>
+              <staff xml:id="m-d4102c56-8ce3-4cff-a8f2-3b401b4ecb1c" n="5" facs="m-ed366d6e-39ca-4ce7-881f-acff69621446"/>
+              <staff xml:id="m-fab1f31a-ad7c-408c-a89a-4fd8f31e0873" n="6" facs="m-c354ca1f-2b1a-4c6e-968a-0da4d91ccf34"/>
+            </measure>
+            <measure xml:id="m-f3869c1b-11b5-4b91-9299-f5995984ac98" n="16" facs="m-f8408d85-614f-428a-b468-0d4c7d8ff4a9">
+              <staff xml:id="m-49a1f1cd-1a38-456c-8caa-93bbdc7d648d" n="1" facs="m-3c8f3c9d-9e1c-446d-b855-da174f3f91d6"/>
+              <staff xml:id="m-d0335c8f-5537-4282-82d8-d9e422c3ec24" n="2" facs="m-1c5ae1f5-3434-4574-9485-5b02afbdbb54"/>
+              <staff xml:id="m-c82e2358-cc47-4d68-bc34-ff0ebc3eec78" n="3" facs="m-78db7663-0d2b-48cf-8ebf-5d257a0a6c07"/>
+              <staff xml:id="m-cfe35af3-54cf-4c7a-9911-b00994547767" n="4" facs="m-1799aa81-07d3-4f08-975c-5994d76e662b"/>
+              <staff xml:id="m-ccb77dc5-e4c9-40b8-93e6-6f8a3d58d40d" n="5" facs="m-0ba400ff-8646-4420-a04b-2b0ccd2b0448"/>
+              <staff xml:id="m-a19b3579-fbad-4340-b076-0a489ebfad9b" n="6" facs="m-29873d5e-6f71-4db5-8ee4-93fe60dfd104"/>
+            </measure>
+            <measure xml:id="m-de257112-83f2-416a-a0c7-994f99e679a7" n="17" facs="m-3df6bce6-335a-4b7b-962b-f9ecbbc156b6">
+              <staff xml:id="m-3c0afaa9-165d-44ea-9fa8-7f68be0befb9" n="1" facs="m-604fce8f-4740-4736-a4fb-10f4742e5914"/>
+              <staff xml:id="m-0eac08b5-e846-4241-99a9-413192fad479" n="2" facs="m-82e50619-d766-490a-b482-541cb111ce63"/>
+              <staff xml:id="m-c4f59138-fd8c-4c00-8a81-2581adf9a8eb" n="3" facs="m-86d9696b-eeee-4db3-96c5-b5d1b910f854"/>
+              <staff xml:id="m-8d8a60f3-415a-48f7-af94-2f21ff2ca658" n="4" facs="m-2dfe4184-199e-4245-b161-789ecccfd936"/>
+              <staff xml:id="m-e9384011-cc50-416c-befb-dd84bd5bcb20" n="5" facs="m-a53fe4a1-fe95-47c6-a12d-94a504b075e2"/>
+              <staff xml:id="m-a7f23039-0f4f-4417-8992-08fa7c1b1257" n="6" facs="m-bd096046-363f-41b9-a508-2c6f249f78b0"/>
+            </measure>
+            <measure xml:id="m-f2769224-0a18-4cfc-9eb8-1dbcac891889" n="18" facs="m-799d3ab2-b0d5-47d0-b5bc-abcb87307608">
+              <staff xml:id="m-947177f5-67c5-41fc-a091-52886fd30c31" n="1" facs="m-0d82ec7b-3a56-4364-9efb-93f3b7823d73"/>
+              <staff xml:id="m-c3d944c8-36e2-471c-9d5a-f6135e5eff41" n="2" facs="m-5804835c-1cda-499e-af43-82fb54ebf67c"/>
+              <staff xml:id="m-ccf3842c-914c-4587-9ad8-0134866e1695" n="3" facs="m-a741ed99-d161-492c-9003-ad34b5c6635f"/>
+              <staff xml:id="m-e66e8cc0-45e6-431e-b5ae-8884c54c09e0" n="4" facs="m-9b2880a4-fb09-4af8-9bf4-7486e05b978d"/>
+              <staff xml:id="m-5e76e150-82c5-4b66-9048-6e096bab35b3" n="5" facs="m-ad3f2280-b11c-4e31-a3ac-17e32bcdbd5f"/>
+              <staff xml:id="m-b565839d-ef2b-42b4-8faa-917a2e5b2631" n="6" facs="m-987286ef-276a-420e-949a-5fb97c290f85"/>
+            </measure>
+            <measure xml:id="m-66437cdb-c573-4c56-85b6-d57364836d7c" n="19" facs="m-7f5f06e2-38a2-48b8-b308-b2446d73d2e8">
+              <staff xml:id="m-006550f5-d9e8-43f8-9834-dd12175c9ffb" n="1" facs="m-a6c07334-274a-4635-88a3-e1feacb21836"/>
+              <staff xml:id="m-11db0f5e-9297-4283-a78a-f25440d42468" n="2" facs="m-d5dbb6ea-f9e7-40cb-9856-0b0cb7038028"/>
+              <staff xml:id="m-9b288750-fe5a-4485-bc75-e6bfedfd6c89" n="3" facs="m-6cb25902-4e14-40c0-b0aa-5c8d54c246a1"/>
+              <staff xml:id="m-3523de03-23e2-4a88-a252-5fd87ddd7956" n="4" facs="m-2eb7ab4a-1bba-4433-9a0b-2dbe69848a4b"/>
+              <staff xml:id="m-55b12563-bc08-4ad5-b269-b8ce9ec7b2c2" n="5" facs="m-f6026620-a853-44cc-84c4-4246d8b8fa6c"/>
+            </measure>
+            <measure xml:id="m-12ccaea4-6684-4c97-a78a-7c823d93bef5" n="20" facs="m-f5c228f1-8d19-4794-974a-a52897bc5742">
+              <staff xml:id="m-f25307a8-cc74-4d0e-af3c-f07507e1038e" n="1" facs="m-4e156b8a-b2f1-4148-9257-db7d20f4a435"/>
+              <staff xml:id="m-9ac53487-3a08-4a59-b7da-fddc46ad65b4" n="2" facs="m-04c624b7-7105-4a00-8c1f-5c054b621e9e"/>
+              <staff xml:id="m-6bb4200a-44b1-4cd5-866d-3f0ea9381aa8" n="3" facs="m-0c49d300-02d2-4b58-86af-d6ffb78ddb38"/>
+              <staff xml:id="m-492da7e6-cc17-45fd-b595-445190daa374" n="4" facs="m-79c17159-249e-4215-ae76-248479cd2775"/>
+              <staff xml:id="m-5b4117b8-21af-4a0d-8db7-f4bc64391d8e" n="5" facs="m-6a492e99-2f64-4db1-a886-56a50529ad38"/>
+            </measure>
+            <measure xml:id="m-b360ce17-7943-475f-925f-a33cc6ccc350" n="21" facs="m-c6cc903a-acf9-4cb4-b5c2-ab5cea294f04">
+              <staff xml:id="m-1e8163b6-f72c-4044-af7b-3c055d5df981" n="1" facs="m-0c9f4593-dbd9-43fe-828b-3be4e69b4355"/>
+              <staff xml:id="m-9cf0c435-3e00-47f1-8cbd-ee0ad3c9baad" n="2" facs="m-12c4b615-2a00-4bd4-a05a-54b619027bcf"/>
+              <staff xml:id="m-4ce54dc4-2855-4494-82e4-549f848f1ee4" n="3" facs="m-062b67f4-fafc-4438-aa60-04f78991556a"/>
+              <staff xml:id="m-1930d6f4-1819-4690-aad9-bbb15f9c0fe3" n="4" facs="m-523f9791-dbf2-4623-876a-6b0b4656ffae"/>
+            </measure>
+            <measure xml:id="m-5539f775-5cc1-4aea-a891-412b28f167e9" n="22" facs="m-dd25ec85-0c51-4747-b3e9-c72923f7e04d">
+              <staff xml:id="m-0be161ed-3c0d-4a6b-8372-21724483c994" n="1" facs="m-b04072b8-cca7-4022-99b8-ae917d9f329d"/>
+              <staff xml:id="m-8be5e78d-8599-4c75-b378-372a0a0eec67" n="2" facs="m-a3b3b8a2-2073-442f-b5eb-25faa63e85a9"/>
+              <staff xml:id="m-1c466447-f3f3-4ec5-94e8-830479bf9ed6" n="3" facs="m-f49eb199-8d76-47e6-9839-d5dfc9ab0906"/>
+            </measure>
+            <measure xml:id="m-f698ae1a-2684-4987-88e4-2593d4da1b48" n="23" facs="m-985ea57e-8170-43fa-acfa-8e591c7c0a0b">
+              <staff xml:id="m-94c5bfcd-89f1-49ae-a415-c77a49405f7c" n="2" facs="m-913d7cba-4360-4f95-9c1a-67f0db491da5"/>
+              <staff xml:id="m-e2c17689-9dd9-4eda-9a89-a3d4330d5cd8" n="3" facs="m-748a1217-6137-432f-9aaa-1f96eaebd40d"/>
+            </measure>
+            <measure xml:id="m-6c928865-1be6-44c4-9dfb-6a6fe15a6920" n="24" facs="m-f3732bff-05f1-4431-bfd3-15710983a466">
+              <staff xml:id="m-36b96917-3b92-4bf6-bab5-c516248f8a16" n="3" facs="m-fe02653f-8ac7-4721-ab3e-1e29146bfc99"/>
+            </measure>
+          </section>
+        </score>
+      </mdiv>
+    </body>
+  </music>
+</mei>

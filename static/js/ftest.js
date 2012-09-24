@@ -8,276 +8,195 @@ window.onload = function() {
     var minBar = 1;
     var textSize = 15;
     var textPadding = 3;
+    //var stavesPerSystem = 3;
     
-    /*
-    function getSubStaffByNumber(group, number) {
-        var staves = group.get(".substaff");
-        var i;
-        for (i = 0; i < group.attrs.staves; i++) {
-            if (staves[i].attrs.number == number) {
-                return staves[i];
-            }
-        }
-        return null;
-    }
-    
-    function updateMultiStaffGroup(group, activeAnchor) {
-        var lockY = false;
-        var topLeft = group.get(".1")[0];
-        var topRight = group.get(".2")[0];
-        var bottomRight = group.get(".3")[0];
-        var bottomLeft = group.get(".4")[0];
-        
-        var staff = group.get(".multistaffframe")[0];
-        var iBox = group.get(".multistaffbox")[0];
+    function updateMulti(group, activeAnchor) {
+        var topLeft = group.get(".tl")[0];
+        var topRight = group.get(".tr")[0];
+        var lowerRight = group.get(".lr")[0];
+        var lowerLeft = group.get(".ll")[0];
+        var bar = group.get(".bar")[0];
+        var iBox = group.get(".barbox")[0];
+        var nStaves = group.attrs.bars.length;
         topLeft.attrs.visible = true;
         topRight.attrs.visible = true;
-        bottomRight.attrs.visible = true;
-        bottomLeft.attrs.visible = true;
-        
-        switch (activeAnchor.getName()) {
-            case "1":
-                if (group.attrs.staves > 1) {
-                    var s0 = getSubStaffByNumber(group, 0);
-                    var s1 = getSubStaffByNumber(group, 1);
-                    var s0Staff = s0.get(".firststaff")[0];
-                    if (s1.getAbsolutePosition().y <= (topLeft.getAbsolutePosition().y + s0Staff.getHeight()) + 5) {
-                        topLeft.setAbsolutePosition({
-                            x: topLeft.getAbsolutePosition().x,
-                            y: s1.getAbsolutePosition().y - s0Staff.getHeight() - 5
-                        });
-                    }
-                }
-                topRight.attrs.y = activeAnchor.attrs.y;
-                bottomLeft.attrs.x = activeAnchor.attrs.x;
-                break;
-            case "2":
-                if (group.attrs.staves > 1) {
-                    var s0 = getSubStaffByNumber(group, 0);
-                    var s1 = getSubStaffByNumber(group, 1);
-                    var s0Staff = s0.get(".firststaff")[0];
-                    if (s1.getAbsolutePosition().y <= (topRight.getAbsolutePosition().y + s0Staff.getHeight()) + 5) {
-                        topRight.setAbsolutePosition({
-                            x: topRight.getAbsolutePosition().x,
-                            y: s1.getAbsolutePosition().y - s0Staff.getHeight() - 5
-                        });
-                    }
-                }
-                topLeft.attrs.y = activeAnchor.attrs.y;
-                bottomRight.attrs.x = activeAnchor.attrs.x;
-                break;
-            case "3":
-                if (group.attrs.staves > 1) {
-                    var s0 = getSubStaffByNumber(group, group.attrs.staves - 1);
-                    var s1 = getSubStaffByNumber(group, group.attrs.staves - 2);
-                    var s0Staff = s0.get(".staff")[0];
-                    if (s1.getAbsolutePosition().y <= (bottomLeft.getAbsolutePosition().y + s0Staff.getHeight()) + 5) {
-                        topRight.setAbsolutePosition({
-                            x: topRight.getAbsolutePosition().x,
-                            y: s1.getAbsolutePosition().y - s0Staff.getHeight() - 5
-                        });
-                    }
-                }
-                bottomLeft.attrs.y = activeAnchor.attrs.y;
-                topRight.attrs.x = activeAnchor.attrs.x;
-                break;
-            case "4":
-                bottomRight.attrs.y = activeAnchor.attrs.y;
-                topLeft.attrs.x = activeAnchor.attrs.x;
-                break;
-        }
-        
-        var width = topRight.attrs.x - topLeft.attrs.x;
-        var height = bottomLeft.attrs.y - topLeft.attrs.y;
-        var substaves = group.get(".substaff");
-        var i;
-        for (i = 0; i < substaves.length; i++) {
-            var substaff = substaves[i];
-            var sIBox = substaff.get(".staffbox")[0];
-            var first = substaff.get(".firststaff");
-            var last = substaff.get(".laststaff");
-            var currStaff = null;
-            if (first.length == 1) {
-                currStaff = first[0];
-                substaff.setPosition(topLeft.attrs.x + 5, topLeft.attrs.y + 5);
-            } else if (last.length == 1) {
-                currStaff = last[0];
-                substaff.setPosition(bottomLeft.attrs.x + 5, bottomLeft.attrs.y - 5 - currStaff.getHeight());
-            } else {
-                currStaff = substaff.get(".staff")[0];
-                substaff.setX(topLeft.attrs.x + 5);
-            }
-            currStaff.setWidth(width - 10);
-            sIBox.setWidth(width);
-            
-            var number = currStaff.attrs.number;
-            var tr = substaff.get("." + (number * 4 + 2))[0];
-            var br = substaff.get("." + (number * 4 + 3))[0];
-            
-            tr.attrs.x = currStaff.getWidth();
-            br.attrs.x = currStaff.getWidth();
-        }
-
-        var lines = group.get(".line");
-        for (i = 0; i < lines.length; i++) {
-            lines[i].setY(topLeft.attrs.y);
-            lines[i].setHeight(height);
-            if (lines[i].getX() > width) {
-                topRight.attrs.x = lines[i].getX();
-                bottomRight.attrs.x = topRight.attrs.x;
-                width = lines[i].getX();
-            } else if (lines[i].getX() < topLeft.attrs.x) {
-                topLeft.attrs.x = lines[i].getX();
-                bottomLeft.attrs.x = topLeft.attrs.x;
-                width = topRight.attrs.x - topLeft.attrs.x;
-            }
-        }
-        staff.setPosition(topLeft.attrs.x + 5, topLeft.attrs.y + 5);
-        iBox.setPosition(topLeft.attrs.x - 5, topLeft.attrs.y - 5);
-        if(width && height) {
-            staff.setSize(width - 10, height - 10);
-            iBox.setSize(width + 10, height + 10);
-        }
-    }
-    
-    function updateSubStaff(group, activeAnchor) {
-        var superGroup = group.getParent();
-        var first = group.get(".firststaff");
-        var last = group.get(".laststaff");
-        var isFirst = false;
-        var isLast = false;
-        
-        var staff = null;
-        
-        if (first.length == 1) {
-            isFirst = true;
-            staff = first[0];
-        } else if (last.length == 1) {
-            isLast = true;
-            staff = last[0];
-        } else {
-            staff = group.get(".staff")[0];
-        }
-        
-        var number = staff.attrs.number;
-        
-        var topLeft = group.get("." + (number * 4 + 1))[0];
-        var topRight = group.get("." + (number * 4 + 2))[0];
-        var bottomRight = group.get("." + (number * 4 + 3))[0];
-        var bottomLeft = group.get("." + (number * 4 + 4))[0];
-        
-        var iBox = group.get(".staffbox")[0];
-        topLeft.attrs.visible = true;
-        topRight.attrs.visible = true;
-        bottomRight.attrs.visible = true;
-        bottomLeft.attrs.visible = true;
-        
-        switch (activeAnchor.getName()) {
-            case number * 4 + 1:
-                topRight.attrs.y = activeAnchor.attrs.y;
-                bottomLeft.attrs.x = activeAnchor.attrs.x;
-                break;
-            case number * 4 + 2:
-                topLeft.attrs.y = activeAnchor.attrs.y;
-                bottomRight.attrs.x = activeAnchor.attrs.x;
-                break;
-            case number * 4 + 3:
-                bottomLeft.attrs.y = activeAnchor.attrs.y;
-                topRight.attrs.x = activeAnchor.attrs.x;
-                break;
-            case number * 4 + 4:
-                bottomRight.attrs.y = activeAnchor.attrs.y;
-                topLeft.attrs.x = activeAnchor.attrs.x;
-                break;
-        }
-        
-        var width = topRight.attrs.x - topLeft.attrs.x;
-        var height = bottomLeft.attrs.y - topLeft.attrs.y;
-        
-        //group.setPosition(topLeft.attrs.x, topLeft.attrs.y);
-        staff.setPosition(topLeft.attrs.x, topLeft.attrs.y);
-        iBox.setPosition(topLeft.attrs.x - 5, topLeft.attrs.y - 5);
-        if(width && height) {
-            staff.setSize(width, height);
-            iBox.setSize(width + 10, height + 10);
-        }
-    }
-    
-    function updateStaff(group, activeAnchor) {
-        var topLeft = group.get(".1")[0];
-        var topRight = group.get(".2")[0];
-        var bottomRight = group.get(".3")[0];
-        var bottomLeft = group.get(".4")[0];
-        var staff = group.get(".staff")[0];
-        var iBox = group.get(".staffbox")[0];
-        topLeft.attrs.visible = true;
-        topRight.attrs.visible = true;
-        bottomRight.attrs.visible = true;
-        bottomLeft.attrs.visible = true;
+        lowerRight.attrs.visible = true;
+        lowerLeft.attrs.visible = true;
         // update anchor positions
         switch (activeAnchor.getName()) {
-            case "1":
+            case "tl":
+                if (nStaves > 1) {
+                    if (activeAnchor.attrs.y > group.attrs.lines[0].getY()) {
+                        activeAnchor.attrs.y = group.attrs.lines[0].getY();
+                    }
+                    group.attrs.bars[0].setY(activeAnchor.attrs.y);
+                    group.attrs.bars[0].setHeight(group.attrs.lines[0].getY() - activeAnchor.attrs.y);
+                } else if (activeAnchor.attrs.y > lowerLeft.attrs.y) {
+                    activeAnchor.attrs.y = lowerLeft.attrs.y;
+                }
+                if (activeAnchor.attrs.x > topRight.attrs.x) {
+                    activeAnchor.attrs.x = topRight.attrs.x;
+                }
                 topRight.attrs.y = activeAnchor.attrs.y;
-                bottomLeft.attrs.x = activeAnchor.attrs.x;
+                lowerLeft.attrs.x = activeAnchor.attrs.x;
                 break;
-            case "2":
+            case "tr":
+                if (nStaves > 1) {
+                    if (activeAnchor.attrs.y > group.attrs.lines[0].getY()) {
+                        activeAnchor.attrs.y = group.attrs.lines[0].getY();
+                    }
+                    group.attrs.bars[0].setY(activeAnchor.attrs.y);
+                    group.attrs.bars[0].setHeight(group.attrs.lines[0].getY() - activeAnchor.attrs.y);
+                } else if (activeAnchor.attrs.y > lowerLeft.attrs.y) {
+                    activeAnchor.attrs.y = lowerLeft.attrs.y;
+                }
+                if (activeAnchor.attrs.x < topLeft.attrs.x) {
+                    activeAnchor.attrs.x = topLeft.attrs.x;
+                }
                 topLeft.attrs.y = activeAnchor.attrs.y;
-                bottomRight.attrs.x = activeAnchor.attrs.x;
+                lowerRight.attrs.x = activeAnchor.attrs.x;
                 break;
-            case "3":
-                bottomLeft.attrs.y = activeAnchor.attrs.y;
+            case "lr":
+                if (nStaves > 1) {
+                    if (activeAnchor.attrs.y < group.attrs.lines[group.attrs.lines.length - 1].getY()) {
+                        activeAnchor.attrs.y = group.attrs.lines[group.attrs.lines.length - 1].getY();
+                    }
+                    group.attrs.bars[group.attrs.bars.length - 1].setHeight(activeAnchor.attrs.y - group.attrs.lines[group.attrs.lines.length - 1].getY());
+                } else if (activeAnchor.attrs.y < topLeft.attrs.y) {
+                    activeAnchor.attrs.y = topLeft.attrs.y;
+                }
+                if (activeAnchor.attrs.x < topLeft.attrs.x) {
+                    activeAnchor.attrs.x = topLeft.attrs.x;
+                }
+                lowerLeft.attrs.y = activeAnchor.attrs.y;
                 topRight.attrs.x = activeAnchor.attrs.x;
                 break;
-            case "4":
-                bottomRight.attrs.y = activeAnchor.attrs.y;
+            case "ll":
+                if (nStaves > 1) {
+                    if (activeAnchor.attrs.y < group.attrs.lines[group.attrs.lines.length - 1].getY()) {
+                        activeAnchor.attrs.y = group.attrs.lines[group.attrs.lines.length - 1].getY();
+                    }
+                    group.attrs.bars[group.attrs.bars.length - 1].setHeight(activeAnchor.attrs.y - group.attrs.lines[group.attrs.lines.length - 1].getY());
+                } else if (activeAnchor.attrs.y < topLeft.attrs.y) {
+                    activeAnchor.attrs.y = topLeft.attrs.y;
+                }
+                if (activeAnchor.attrs.x > topRight.attrs.x) {
+                    activeAnchor.attrs.x = topRight.attrs.x;
+                }
+                lowerRight.attrs.y = activeAnchor.attrs.y;
                 topLeft.attrs.x = activeAnchor.attrs.x;
                 break;
         }
     
         var width = topRight.attrs.x - topLeft.attrs.x;
-        var height = bottomLeft.attrs.y - topLeft.attrs.y;
+        var height = lowerLeft.attrs.y - topLeft.attrs.y;
     
-        var lines = group.get(".line");
-        var i;
-        for (i = 0; i < lines.length; i++) {
-            lines[i].setY(topLeft.attrs.y);
-            lines[i].setHeight(height);
-            if (lines[i].getX() > width) {
-                topRight.attrs.x = lines[i].getX();
-                bottomRight.attrs.x = topRight.attrs.x;
-                width = lines[i].getX();
-            } else if (lines[i].getX() < topLeft.attrs.x) {
-                topLeft.attrs.x = lines[i].getX();
-                bottomLeft.attrs.x = topLeft.attrs.x;
-                width = topRight.attrs.x - topLeft.attrs.x;
-            }
-        }
-        staff.setPosition(topLeft.attrs.x, topLeft.attrs.y);
+        bar.setPosition(topLeft.attrs.x, topLeft.attrs.y);
         iBox.setPosition(topLeft.attrs.x - 5, topLeft.attrs.y - 5);
-        if(width && height) {
-            staff.setSize(width, height);
-            iBox.setSize(width + 10, height + 10);
+        bar.setSize(width, height);
+        iBox.setSize(width + 10, height + 10);
+            
+        if (nStaves > 1) {
+            var i;
+            for (i = 0; i < group.attrs.lines.length; i++) {
+                group.attrs.lines[i].setX(topLeft.attrs.x);
+                group.attrs.lines[i].setWidth(width);
+            }
+            for (i = 0; i < group.attrs.bars.length; i++) {
+                group.attrs.bars[i].setX(topLeft.attrs.x);
+                group.attrs.bars[i].setWidth(width);
+            }
+            
         }
     }
     
-    function update(group, activeAnchor) {
-        if (group.getName() == "multistaffgroup") {
-            updateMultiStaffGroup(group, activeAnchor);
-        } else if (group.getName() == "substaff") {
-            updateSubStaff(group, activeAnchor)
-        } else {
-            updateStaff(group, activeAnchor);
+    function refitBoxMulti(bGroup) {
+        // The various components of a bar
+        var topLeft = bGroup.get(".tl")[0];
+        var topRight = bGroup.get(".tr")[0];
+        var lowerRight = bGroup.get(".lr")[0];
+        var lowerLeft = bGroup.get(".ll")[0];
+        var bar = bGroup.get(".bar")[0];
+        var iBox = bGroup.get(".barbox")[0];
+        var barNumber = bGroup.get(".barnumber")[0];
+        var lines = bGroup.attrs.lines;
+        var bars = bGroup.attrs.bars;
+        
+        var tlPos = topLeft.getAbsolutePosition();
+        var lrPos = lowerRight.getAbsolutePosition();
+        
+        var width = lrPos.x - tlPos.x;
+        var height = lrPos.y - tlPos.y;
+        
+        // Reassign element positions
+        
+        var i, absY;
+        for (i = 0; i < lines.length; i++) {
+            absY = lines[i].getAbsolutePosition().y - tlPos.y;
+            lines[i].setPosition({
+                x: 0,
+                y: absY
+            });
+        }
+        for (i = 0; i < bars.length; i++) {
+            absY = bars[i].getAbsolutePosition().y - tlPos.y;
+            bars[i].setPosition({
+                x: 0,
+                y: absY
+            });
+        }
+        
+        bGroup.setPosition({
+            x: tlPos.x,
+            y: tlPos.y
+        });
+        barNumber.setPosition({
+            x: 0,
+            y: 0
+        });
+        bar.setPosition({
+            x: 0,
+            y: 0
+        });
+        iBox.setPosition({
+            x: -barMargin,
+            y: -barMargin
+        });
+        topLeft.setPosition({
+            x: 0,
+            y: 0
+        });
+        topRight.setPosition({
+            x: width,
+            y: 0
+        });
+        lowerRight.setPosition({
+            x: width,
+            y: height
+        });
+        lowerLeft.setPosition({
+            x: 0,
+            y: height
+        });
+        
+        // Reassign element dimensions
+        bar.setWidth(width);
+        bar.setHeight(height);
+        iBox.setWidth(width + (barMargin * 2));
+        iBox.setHeight(height + (barMargin * 2));
+        
+        barNumber.setFontSize(textSize);
+        if (width < (barNumber.getTextWidth() + 6)) {
+            barNumber.setFontSize(textSize * (width / (barNumber.getTextWidth() + 6)));
+        }
+        if (height < (barNumber.getTextHeight() + 6)) {
+            barNumber.setFontSize(textSize * (height / (barNumber.getTextHeight() + 6)));
         }
     }
     
-    function addAnchor(group, iBox, x, y, name) {
+    function addAnchorMulti(group, iBox, x, y, name) {
         var stage = group.getStage();
         var layer = group.getLayer();
-        var superGroup = null;
-        if (group.getName() == "substaff") {
-            superGroup = group.getParent();
-        }
-
         var anchor = new Kinetic.Circle({
             x: x,
             y: y,
@@ -289,47 +208,50 @@ window.onload = function() {
             draggable: true,
             visible: false
         });
-
+        
+        // Update bar when moved
         anchor.on("dragmove", function() {
-            update(group, this);
+            updateMulti(group, this);
             layer.draw();
         });
-        anchor.on("mousedown touchstart", function(e) {
+        // Prevent event from bubbling up when anchor selected, move bar to top, hide bar number
+        anchor.on("mousedown", function(e) {
             group.setDraggable(false);
             this.moveToTop();
             e.cancelBubble = true;
+            var number = group.get(".barnumber")[0];
+            number.attrs.visible = false;
         });
+        // Update score information on dragend (bar/system fitting, bar numbers)
         anchor.on("dragend", function() {
+            resizeSystem(group.getParent().get(".system")[0]);
             group.setDraggable(true);
+            updateNumbers();
+            refitBoxMulti(group);
+            var number = group.get(".barnumber")[0];
+            number.attrs.visible = true;
             layer.draw();
         });
-        // add hover styling
+        // Add hover styling
         anchor.on("mouseover", function() {
             var layer = this.getLayer();
             document.body.style.cursor = "pointer";
             this.setStrokeWidth(4);
             layer.draw();
         });
+        // Restore hover styling on mouseout
         anchor.on("mouseout", function() {
             var layer = this.getLayer();
-            document.body.style.cursor = "default";
+            document.body.style.cursor = "move";
             this.setStrokeWidth(2);
             layer.draw();
         });
-        if (superGroup !== null) {
-            superGroup.on("dragmove", function(e) {
-                anchor.attrs.visible = true;
-                anchor.getLayer().draw();
-            });
-            superGroup.on("mouseout", function() {
-                anchor.attrs.visible = false;
-                anchor.getLayer().draw();
-            });
-        }
+        // Keep anchor visible during drag
         group.on("mouseover dragmove", function() {
             anchor.attrs.visible = true;
             anchor.getLayer().draw();
         });
+        // Hide anchors when mouse leaves bar
         group.on("mouseout", function() {
             anchor.attrs.visible = false;
             anchor.getLayer().draw();
@@ -337,29 +259,70 @@ window.onload = function() {
         group.add(anchor);
     }
     
-    function addLine(stage, group, x, y, height) {
+    function getMultiStaffLines(group) {
+        var yLines = [];
+        var i;
+        for (i = 0; i < group.attrs.lines.length; i++) {
+            yLines[i] = Math.round(group.attrs.lines[i].getY() + (group.attrs.lines[i].getHeight() / 2));
+        }
+        return yLines;
+    }
+    
+    function addStaffLine(stage, group, y, w, gH, bar, lineNum, barNum, bottom, numLines) {
+        var nStaves = (numLines / 2) + 1;
         var line = new Kinetic.Rect({
-            x: x - group.getX() - 0.5,
-            y: y,
-            width: 2,
-            height: height,
-            fill: 'black',
+            x: 0,
+            y: y - 1,
+            width: w,
+            height: 3,
+            fill: 'red',
             name: "line"
+        });
+        line.on("mouseover", function(evt) {
+            document.body.style.cursor = "pointer";
+            evt.cancelBubble = true;
+        });
+        line.on("mouseout", function(evt) {
+            document.body.style.cursor = "move";
+            evt.cancelBubble = true;
         });
         line.on("mousedown", function(evt) {
             stage.on("mousemove", function(e) {
                 var pos = stage.getMousePosition(e);
-                var pX = pos.x;
-                var staff = group.get(".staff")[0];
-                var newPos = pX - group.getX() - 0.5;
-                if (newPos < ( staff.getX() + staff.getWidth()) && newPos > staff.getX()) {
-                    line.setX(newPos);
-                } else if (newPos > ( staff.getX() + staff.getWidth())) {
-                    newPos = staff.getWidth();
+                var pY = pos.y;
+                var gY = group.getY();
+                if (bottom === true) {
+                    // Bottom of staff line
+                    if (barNum == 0 && pY < gY) {
+                        //First line hits top of system
+                        pY = gY;
+                    } else if (barNum > 0 && pY < (group.attrs.lines[lineNum - 1].getY() + gY)) {
+                        //Non-first line hits top of its own staff
+                        pY = group.attrs.lines[lineNum - 1].getY() + group.getY();
+                    } else if (lineNum < (numLines - 1) && pY > (group.attrs.lines[lineNum + 1].getY() + gY)) {
+                        //Line hits top of next staff
+                        pY = group.attrs.lines[lineNum + 1].getY() + gY;
+                    }
+                    bar.setHeight(pY - (bar.getY() + gY));
                 } else {
-                    newPos = 0;
+                    // Top of staff line
+                    if (barNum == (nStaves - 1) && pY > (gH + gY)) {
+                        //Last line hits bottom of system
+                        pY = gH + gY;
+                    } else if (barNum < (nStaves - 1) && pY > (group.attrs.lines[lineNum + 1].getY() + gY)) {
+                        //Non-last line hits bottom of its own staff
+                        pY = group.attrs.lines[lineNum + 1].getY() + gY;
+                    } else if (lineNum > 0 && pY < (group.attrs.lines[lineNum - 1].getY() + gY)) {
+                        //Line hits bottom of previous staff
+                        pY = group.attrs.lines[lineNum - 1].getY() + gY;
+                    }
+                    var prevBottom = bar.getY() + bar.getHeight();
+                    bar.setHeight(prevBottom + gY - pY);
+                    bar.setY(pY - gY);
                 }
-                line.getLayer().draw();
+                
+                line.setY(pY - gY);
+                group.getLayer().draw();
             });
             stage.on("mouseup", function() {
                 stage.off("mousemove");
@@ -367,212 +330,198 @@ window.onload = function() {
             });
             evt.cancelBubble = true;
         });
-        line.on("click", function(e) {
-            if (e.altKey) {
-                group.remove(line);
-                group.getLayer().draw();
-            }
-        });
+        group.attrs.lines.push(line);
         group.add(line);
     }
-        
-    function addStaff(stage, tl, br, lines) {
-        if (lines === undefined) {
-            lines = [];
+    
+    function addBarMulti(stage, system, x, y, w, h, lines, number, id, facs) {
+        if (id === undefined) {
+            id = genUUID();
+        }
+        if (facs === undefined) {
+            facs = genUUID();
         }
         
-        var sWidth = br.x - tl.x;
-        var sHeight = br.y - tl.y;
-        
-        var sGroup = new Kinetic.Group({
-            x: tl.x,
-            y: tl.y,
+        var bGroup = new Kinetic.Group({
+            x: x,
+            y: y,
             draggable: true,
-            name: "staffgroup"
+            name: "bargroup",
+            number: number,
+            lines: [],
+            bars: [],
+            id: id,
+            facs: facs
         });
         
-        var sLayer = new Kinetic.Layer();
-        sLayer.add(sGroup);
+        // Insert bar into correct position in system's bars list
+        var i = 0;
+        for (i = 0; i < system.children.length; i++) {
+            if (system.children[i].getX() > x) {
+                system.attrs.bars.splice(i, 0, bGroup);
+                break;
+            }
+        }
+        if (i === system.children.length) {
+            system.attrs.bars.push(bGroup);
+        }
         
+        system.add(bGroup);
+        
+        // Detection box for bar, coloured near-transparent orange (for now)
         var invisiBox = new Kinetic.Rect({
-            x: -5,
-            y: -5,
-            width: sWidth + 10,
-            height: sHeight + 10,
-            fill: 'red',
-            alpha: 0.2,
-            name: "staffbox"
+            x: -barMargin,
+            y: -barMargin,
+            width: w + (barMargin * 2),
+            height: h + (barMargin * 2),
+            fill: 'orange',
+            alpha: 0.05,
+            name: "barbox"
         });
-        sGroup.add(invisiBox);
-
-        var staff = new Kinetic.Rect({
+        bGroup.add(invisiBox);
+        
+        var bar = new Kinetic.Rect({
             x: 0,
             y: 0,
-            width: sWidth,
-            height: sHeight,
+            width: w,
+            height: h,
             fill: '',
-            stroke: 'black',
-            strokewidth: 4,
-            name: "staff"
+            stroke: 'red',
+            strokeWidth: 2,
+            name: "bar"
         });
-        sGroup.add(staff);
         
-        staff.on("click", function(e) {
+        // Pointer styling
+        bGroup.on("mouseover", function() {
+            this.moveToTop();
+            document.body.style.cursor = "move";
+        });
+        bGroup.on("mouseout", function() {
+            document.body.style.cursor = "default";
+        });
+        // Delete bar if alt-clicked, then re-number and update systems
+        bGroup.on("click", function(e) {
+            if (e.altKey) {
+                system.getLayer().remove(bGroup);
+                system.attrs.bars.splice(system.attrs.bars.indexOf(bGroup), 1);
+                updateNumbers();
+                resizeSystem(system);
+            }
+        });
+        // Recalculate system membership, and system size on dragend
+        bGroup.on("dragend", function(e) {
+            var nearSystem = findNearestSystem(this);
+            // If the nearest system is not the bar's current system, reassign membership
+            if (nearSystem !== system) {
+                system.getLayer().remove(bGroup);
+                system.attrs.bars.splice(system.attrs.bars.indexOf(bGroup), 1);
+                addBarMulti(stage, nearSystem, bGroup.getX(), bGroup.getY(), bar.getWidth(), bar.getHeight(), getMultiStaffLines(bGroup), 0);
+                resizeSystem(nearSystem);
+            }
+            updateNumbers();
+            resizeSystem(system);
+            system.getLayer().draw();
+            system = nearSystem;
+        });
+        
+        var nStaves = 1;
+        if (lines.length > 1) {
+            nStaves = (lines.length / 2) + 1;
+        }
+        if (nStaves > 1) {
+            for (i = 0; i < nStaves; i++) {
+                var lIndex = 2 * i;
+                var lTop = 0;
+                var lBottom = h;
+                if (lIndex > 0) {
+                    lTop = lines[lIndex - 1];
+                }
+                if (lIndex < lines.length) {
+                    lBottom = lines[lIndex];
+                }
+                var subBar = new Kinetic.Rect({
+                    y: lTop,
+                    width: w,
+                    height: lBottom - lTop,
+                    fill: 'blue',
+                    alpha: 0.15,
+                    stroke: 'black',
+                    strokeWidth: 1,
+                    name: "subbar"
+                });
+                bGroup.attrs.bars.push(subBar);
+                bGroup.add(subBar);
+            }
+        }
+        
+        // Split bar if shift-clicked, splitting at location of click
+        bar.on("click", function(e) {
             if (e.shiftKey) {
                 var pos = stage.getMousePosition(e);
-                var pX = pos.x;
-                addLine(stage, sGroup, pX, staff.getY(), staff.getHeight());
-                sGroup.getLayer().draw();
+                var absBarPos = bar.getAbsolutePosition();
+                var leftWidth = pos.x - absBarPos.x;
+                var rightWidth = absBarPos.x + bar.getWidth() - pos.x;
+                system.getLayer().remove(bGroup);
+                system.attrs.bars.splice(system.attrs.bars.indexOf(bGroup), 1);
+                
+                addBarMulti(stage, system, absBarPos.x, absBarPos.y, leftWidth, bar.getHeight(), getMultiStaffLines(bGroup), 0);
+                addBarMulti(stage, system, pos.x, absBarPos.y, rightWidth, bar.getHeight(), getMultiStaffLines(bGroup), 0);
+                
+                updateNumbers();
             }
         });
         
-        var i;
-        for (i = 0; i < lines.length; i++) {
-            addLine(stage, sGroup, lines[i], 0, sHeight);
-        }
+        bGroup.add(bar);
         
-        addAnchor(sGroup, invisiBox, 0, 0, "1");
-        addAnchor(sGroup, invisiBox, sWidth, 0, "2");
-        addAnchor(sGroup, invisiBox, sWidth, sHeight, "3");
-        addAnchor(sGroup, invisiBox, 0, sHeight, "4");
-        
-        stage.add(sLayer);
-    }
-    
-    function addStaffBox (group, tl, br, number, total) {
-        
-        var sGroup = new Kinetic.Group({
-            x: tl.x,
-            y: tl.y,
-            name: "substaff",
-            number: group.attrs.staves
-        });
-        
-        group.add(sGroup);
-        group.attrs.staves++;
-        
-        var sWidth = br.x - tl.x;
-        var sHeight = br.y - tl.y;
-        
-        var sInvisiBox = new Kinetic.Rect({
-            x: -5,
-            y: -5,
-            width: sWidth + 10,
-            height: sHeight + 10,
-            fill: 'yellow',
-            name: "staffbox"
-        });
-        sGroup.add(sInvisiBox);
-
-        var staff = new Kinetic.Rect({
-            x: 0,
-            y: 0,
-            width: sWidth,
-            height: sHeight,
-            fill: '',
-            stroke: 'black',
-            strokewidth: 4,
-            name: "staff",
-            number: number
-        });
-        
-        if (number == 1) {
-            staff.setName("firststaff");
-        } else if (number == total) {
-            staff.setName("laststaff");
-        }
-        
-        sGroup.add(staff);
-        addAnchor(sGroup, sInvisiBox, 0, 0, number * 4 + 1);
-        addAnchor(sGroup, sInvisiBox, sWidth, 0, number * 4 + 2);
-        addAnchor(sGroup, sInvisiBox, sWidth, sHeight, number * 4 + 3);
-        addAnchor(sGroup, sInvisiBox, 0, sHeight, number * 4 + 4);
-    }
-    
-    function addMultiStaff (stage, tl, br, staffEdges, lines) {
-        if (staffEdges.length % 2 !== 0 || staffEdges.length == 0) {
-            return "Badly formed arguments";
-        }
-        var nStaves = (staffEdges.length / 2) + 1;
-        if (lines === undefined) {
-            lines = [];
-        }
-        
-        var msWidth = br.x - tl.x;
-        var msHeight = br.y - tl.y;
-        
-        var msGroup = new Kinetic.Group({
-            x: tl.x,
-            y: tl.y,
-            draggable: true,
-            name: "multistaffgroup",
-            staves: 0
-        });
-        
-        var msLayer = new Kinetic.Layer();
-        msLayer.add(msGroup);
-        
-        var invisiBox = new Kinetic.Rect({
-            x: -10,
-            y: -10,
-            width: msWidth + 20,
-            height: msHeight + 20,
-            fill: 'green',
-            name: "multistaffbox"
-        });
-        msGroup.add(invisiBox);
-        
-        var staffFrame = new Kinetic.Rect({
-            x: 0,
-            y: 0,
-            width: msWidth,
-            height: msHeight,
-            fill: '',
-            stroke: 'black',
-            strokewidth: 4,
-            name: "multistaffframe"
-        });
-        msGroup.add(staffFrame);
-        
-        
-        var i, staffTL, staffBR;
-        for (i = 1; i <= nStaves; i++) {
-            if (i == 1) {
-                staffTL = {
-                    x: 0,
-                    y: 0
-                };
-            } else {
-                staffTL = {
-                    x: 0,
-                    y: staffEdges[(2 * i) - 3]
-                };
-            } 
-            if (i == nStaves) {
-                staffBR = {
-                    x: msWidth,
-                    y: msHeight
-                };
-            } else {
-                staffBR = {
-                    x: msWidth,
-                    y: staffEdges[(2 * i) - 2]
-                };
+        if (nStaves > 1) {
+            for (i = 0; i < lines.length; i++) {
+                var barNum = Math.ceil(i / 2);
+                var lineBar = bGroup.attrs.bars[barNum];
+                var bottomLine = false;
+                if ((i % 2) == 0) {
+                    bottomLine = true;
+                }
+                addStaffLine(stage, bGroup, lines[i], w, h, lineBar, i, barNum, bottomLine, lines.length);
             }
-            addStaffBox(msGroup, staffTL, staffBR, i, nStaves);
         }
         
-        addAnchor(msGroup, invisiBox, -5, -5, "1");
-        addAnchor(msGroup, invisiBox, msWidth+5, -5, "2");
-        addAnchor(msGroup, invisiBox, msWidth+5, msHeight+5, "3");
-        addAnchor(msGroup, invisiBox, -5, msHeight+5, "4");
+        // Number text in top-left corner of bar
+        var barText = new Kinetic.Text({
+            x: 0,
+            y: 0,
+            fontSize: textSize,
+            fontFamily: "Calibri",
+            textFill: "white",
+            fill: 'black',
+            text: number.toString(),
+            align: 'center',
+            padding: textPadding,
+            name: "barnumber"
+        });
         
-        stage.add(msLayer);
+        if (w < (barText.getTextWidth() + (textPadding * 2))) {
+            barText.setFontSize(textSize * (w / (barText.getTextWidth() + 6)));
+        }
+        if (h < (barText.getTextHeight() + (textPadding * 2))) {
+            barText.setFontSize(textSize * (h / (barText.getTextHeight() + 6)));
+        }
+        
+        bGroup.add(barText);
+        // Add anchors to bar
+        addAnchorMulti(bGroup, invisiBox, 0, 0, "tl");
+        addAnchorMulti(bGroup, invisiBox, w, 0, "tr");
+        addAnchorMulti(bGroup, invisiBox, w, h, "lr");
+        addAnchorMulti(bGroup, invisiBox, 0, h, "ll");
+        // By adding group to layer, bars will not move when system is resized/relocated
+        system.getLayer().add(bGroup);
     }
     
-    */
+    // Generates an MEI-formatted time-based random UUID
+    function genUUID() {
+        return "m-" + uuid.v1();
+    }
     
-    // Returns the system with the given id tag
+    // Returns the system with the given UUID tag
     function getSystemById(id) {
         var i;
         for (i = 0; i < systems.length; i++) {
@@ -622,7 +571,7 @@ window.onload = function() {
         return null;
     }
     
-    // Find the nearest system to a given y-coordinate
+    // Find the nearest system to a given y-coordinate.
     function findNearestSystemToPoint(y) {
         var distances = [];
         var i;
@@ -641,7 +590,9 @@ window.onload = function() {
         return null;
     }
     
-    // Resize/relocate a system to correctly bound its bars
+    /* Resize/relocate a system to correctly bound its bars.
+     * Used for maintaining system dimensions for bar-system membership detection
+     * and MEI generation */
     function resizeSystem(system) {
         var bars = system.getLayer().get(".bar");
         var tlx = -1;
@@ -673,6 +624,7 @@ window.onload = function() {
         system.attrs.width = lrx - tlx;
         system.attrs.height = lry - tly;
         /*
+        // TEST CODE FOR VISIBLE SYSTEMS
         var tBox = system.get(".testbox")[0];
         tBox.setAbsolutePosition({
             x: tlx,
@@ -681,6 +633,74 @@ window.onload = function() {
         tBox.setWidth(lrx - tlx);
         tBox.setHeight(lry - tly);*/
         system.getLayer().draw();
+    }
+    
+    /* Readjust bar so that the group is located at the top left anchor,
+     * and all internal elements are oriented around (0,0).
+     * Used for maintaining reliable box element positions and dimensions. */
+    function refitBox(bGroup) {
+        // The various components of a bar
+        var topLeft = bGroup.get(".tl")[0];
+        var topRight = bGroup.get(".tr")[0];
+        var lowerRight = bGroup.get(".lr")[0];
+        var lowerLeft = bGroup.get(".ll")[0];
+        var bar = bGroup.get(".bar")[0];
+        var iBox = bGroup.get(".barbox")[0];
+        var barNumber = bGroup.get(".barnumber")[0];
+        
+        var tlPos = topLeft.getAbsolutePosition();
+        var lrPos = lowerRight.getAbsolutePosition();
+        
+        var width = lrPos.x - tlPos.x;
+        var height = lrPos.y - tlPos.y;
+        
+        // Reassign element positions
+        bGroup.setPosition({
+            x: tlPos.x,
+            y: tlPos.y
+        });
+        barNumber.setPosition({
+            x: 0,
+            y: 0
+        });
+        bar.setPosition({
+            x: 0,
+            y: 0
+        });
+        iBox.setPosition({
+            x: -barMargin,
+            y: -barMargin
+        });
+        topLeft.setPosition({
+            x: 0,
+            y: 0
+        });
+        topRight.setPosition({
+            x: width,
+            y: 0
+        });
+        lowerRight.setPosition({
+            x: width,
+            y: height
+        });
+        lowerLeft.setPosition({
+            x: 0,
+            y: height
+        });
+        
+        // Reassign element dimensions
+        bar.setWidth(width);
+        bar.setHeight(height);
+        iBox.setWidth(width + (barMargin * 2));
+        iBox.setHeight(height + (barMargin * 2));
+        
+        barNumber.setFontSize(textSize);
+        if (width < (barNumber.getTextWidth() + 6)) {
+            barNumber.setFontSize(textSize * (width / (barNumber.getTextWidth() + 6)));
+        }
+        if (height < (barNumber.getTextHeight() + 6)) {
+            barNumber.setFontSize(textSize * (height / (barNumber.getTextHeight() + 6)));
+        }
     }
     
     // Update the numbering of the bars on the page to be in the correct order
@@ -755,68 +775,6 @@ window.onload = function() {
         }
     }
     
-    /* Readjust bar so that the group is located at the top left anchor,
-       and all internal elements are oriented around (0,0) */
-    function refitBox(bGroup) {
-        var topLeft = bGroup.get(".tl")[0];
-        var topRight = bGroup.get(".tr")[0];
-        var lowerRight = bGroup.get(".lr")[0];
-        var lowerLeft = bGroup.get(".ll")[0];
-        var bar = bGroup.get(".bar")[0];
-        var iBox = bGroup.get(".barbox")[0];
-        var barNumber = bGroup.get(".barnumber")[0];
-        
-        var tlPos = topLeft.getAbsolutePosition();
-        var lrPos = lowerRight.getAbsolutePosition();
-        
-        var width = lrPos.x - tlPos.x;
-        var height = lrPos.y - tlPos.y;
-        bGroup.setPosition({
-            x: tlPos.x,
-            y: tlPos.y
-        });
-        barNumber.setPosition({
-            x: 0,
-            y: 0
-        });
-        bar.setPosition({
-            x: 0,
-            y: 0
-        });
-        iBox.setPosition({
-            x: -barMargin,
-            y: -barMargin
-        });
-        topLeft.setPosition({
-            x: 0,
-            y: 0
-        });
-        topRight.setPosition({
-            x: width,
-            y: 0
-        });
-        lowerRight.setPosition({
-            x: width,
-            y: height
-        });
-        lowerLeft.setPosition({
-            x: 0,
-            y: height
-        });
-        bar.setWidth(width);
-        bar.setHeight(height);
-        iBox.setWidth(width + (barMargin * 2));
-        iBox.setHeight(height + (barMargin * 2));
-        
-        barNumber.setFontSize(textSize);
-        if (width < (barNumber.getTextWidth() + 6)) {
-            barNumber.setFontSize(textSize * (width / (barNumber.getTextWidth() + 6)));
-        }
-        if (height < (barNumber.getTextHeight() + 6)) {
-            barNumber.setFontSize(textSize * (height / (barNumber.getTextHeight() + 6)));
-        }
-    }
-    
     // Add an anchor to a bar
     function addAnchor(group, iBox, x, y, name) {
         var stage = group.getStage();
@@ -882,10 +840,6 @@ window.onload = function() {
             anchor.getLayer().draw();
         });
         group.add(anchor);
-    }
-    
-    function genUUID() {
-        return "m-" + uuid.v1();
     }
     
     // Add a bar to a system
@@ -964,7 +918,7 @@ window.onload = function() {
             height: h,
             fill: '',
             stroke: 'red',
-            strokewidth: 4,
+            strokeWidth: 2,
             name: "bar"
         });
         
@@ -1007,14 +961,15 @@ window.onload = function() {
         // Recalculate system membership, and system size on dragend
         bGroup.on("dragend", function(e) {
             var nearSystem = findNearestSystem(this);
+            // If the nearest system is not the bar's current system, reassign membership
             if (nearSystem !== system) {
                 system.getLayer().remove(bGroup);
                 system.attrs.bars.splice(system.attrs.bars.indexOf(bGroup), 1);
                 addBar(stage, nearSystem, bGroup.getX(), bGroup.getY(), bar.getWidth(), bar.getHeight(), 0);
-                resizeSystem(system);
+                resizeSystem(nearSystem);
             }
             updateNumbers();
-            resizeSystem(nearSystem);
+            resizeSystem(system);
             system.getLayer().draw();
             system = nearSystem;
         });
@@ -1113,33 +1068,85 @@ window.onload = function() {
         iLayer.add(img);
         stage.add(iLayer);
         
-        /*
-        var tl = {
-            x: 50,
-            y: 50
-        };
-        var br = {
-            x: 350,
-            y: 220
-        };
-        var lines = [];
-        lines[0] = 70;
-        lines[1] = 100;
-        
-        var staffEdges = [];
-        staffEdges[0] = 50;
-        staffEdges[1] = 75;
-        staffEdges[2] = 105;
-        staffEdges[3] = 130;
-        addMultiStaff(stage, tl, br, staffEdges, lines);
-        //addStaff(stage, tl, br, lines);
-        */
-        
         // Parse MEI to build object system
-        $.get('static/mei/detmoldbars.mei', function(data) {
+        $.get('static/mei/detmoldbars2.mei', function(data) {
             var meiDoc = $.parseXML(data);
             var mei = $(meiDoc);
-            var barNumber = minBar;
+            
+            var currSystem = new Kinetic.Group({
+                x: 0,
+                y: 0,
+                width: 0,
+                height: 0,
+                name: "system",
+                bars: []
+            });
+            systems.push(currSystem);
+            var layer = new Kinetic.Layer();
+            layer.add(currSystem);
+            stage.add(layer);
+            
+            mei.find("section").children().each(function() {
+                
+                if ($(this).is("sb")) {
+                    //resizeSystem(currSystem);
+                    currSystem = new Kinetic.Group({
+                        x: 0,
+                        y: 0,
+                        width: 0,
+                        height: 0,
+                        name: "system",
+                        bars: []
+                    });
+                    systems.push(currSystem);
+                    layer = new Kinetic.Layer();
+                    layer.add(currSystem);
+                    stage.add(layer);
+                } else {
+                    var facs = $(this).attr("facs");
+                    var zone = mei.find('[xml\\:id="' + facs + '"]');
+                    var ulX = zone.attr("ulx") * scaleVal;
+                    var ulY = zone.attr("uly") * scaleVal
+                    var width = (zone.attr("lrx") * scaleVal) - ulX;
+                    var height = (zone.attr("lry") * scaleVal) - ulY;
+                    console.log(ulX, ulY, ulX + width, ulY + height);
+                    
+                    var staves = $(this).children();
+                    var nStaves = staves.size();
+                    var staffEnds = [];
+                    var currStaff = 1;
+                    staves.each(function(staff) {
+                        var staffFacs = $(this).attr("facs");
+                        var staffZone = mei.find('[xml\\:id="' + staffFacs + '"]');
+                        staffEnds.push((staffZone.attr("uly") * scaleVal) - ulY);
+                        staffEnds.push((staffZone.attr("lry") * scaleVal) - ulY);
+                        
+                        
+                        /*
+                        if (currStaff == 1) {
+                            staffEnds.push((staffZone.attr("lry") * scaleVal) - ulY);
+                            console.log((staffZone.attr("lry")), ulY);
+                        } else if (currStaff == nStaves) {
+                            staffEnds.push((staffZone.attr("uly") * scaleVal) - ulY);
+                            console.log((staffZone.attr("uly")), ulY + height);
+                        } else {
+                            staffEnds.push((staffZone.attr("uly") * scaleVal) - ulY);
+                            staffEnds.push((staffZone.attr("lry") * scaleVal) - ulY);
+                        }*/
+                        //currStaff++;
+                    });
+                    staffEnds.sort(function(a,b){return a-b});
+                    staffEnds.splice(staffEnds.length - 1, 1);
+                    staffEnds.splice(0, 1);
+                    addBarMulti(stage, currSystem, ulX, ulY, width, height, staffEnds, $(this).attr("n"));
+                }
+            });
+            //resizeSystem(currSystem);
+            
+            
+            
+            /*
+            
             mei.find("system").each(function() {
                 var facs = $(this).attr("facs");
                 var zone = mei.find('[xml\\:id="' + facs + '"]');
@@ -1153,21 +1160,6 @@ window.onload = function() {
                     name: "system",
                     bars: []
                 }));
-                
-                /*
-                var nBox = new Kinetic.Rect({
-                    x: zone.attr("ulx") * scaleVal,
-                    y: zone.attr("uly") * scaleVal,
-                    width: (zone.attr("lrx") - zone.attr("ulx")) * scaleVal,
-                    height: (zone.attr("lry") - zone.attr("uly")) * scaleVal,
-                    fill: 'yellow',
-                    name: 'testbox'
-                });
-                systems[systems.length - 1].add(nBox);
-                nBox.setAbsolutePosition({
-                    x: zone.attr("ulx") * scaleVal,
-                    y: zone.attr("uly") * scaleVal
-                });*/
             });
             
             var i;
@@ -1177,6 +1169,7 @@ window.onload = function() {
                 stage.add(layer);
             }
             
+            var barNumber = minBar;
             var currSystem = null;
             var prevX = 0;
             var prevY = 0;
@@ -1192,12 +1185,15 @@ window.onload = function() {
                     var width = (zone.attr("lrx") * scaleVal) - prevX;
                     var height = (zone.attr("lry") * scaleVal) - prevY;
                     
-                    addBar(stage, currSystem, prevX, prevY, width, height, barNumber++);
+                    //addBar(stage, currSystem, prevX, prevY, width, height, barNumber++);
+                    //addBarMulti(stage, currSystem, prevX, prevY, width, height, [6, 12, 18, 24], barNumber++);
                     
                     prevX += width;
                     prevY = (zone.attr("uly") * scaleVal);
                 }
             });
+            addBarMulti(stage, systems[0], 100, 100, 500, 500, [100, 200, 300, 400], 1);
+            */
             stage.draw();
         });
         
@@ -1220,5 +1216,6 @@ window.onload = function() {
         //Submission Function: Turn everything into MEI
         
     };
-    imageObj.src = 'static/images/detmoldbars.jpg';
+    // Assigning image source triggers image load
+    imageObj.src = 'static/images/C_07a_ED-Kl_1_A-Wn_SHWeber90_S_009.jpg';
 };
